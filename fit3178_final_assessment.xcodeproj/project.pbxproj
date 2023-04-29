@@ -13,9 +13,6 @@
 		0F61C8D829FD33FF00447934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D629FD33FF00447934 /* Main.storyboard */; };
 		0F61C8DA29FD340000447934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D929FD340000447934 /* Assets.xcassets */; };
 		0F61C8DD29FD340000447934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */; };
-		0F61C8E829FD340000447934 /* fit3178_final_assessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8E729FD340000447934 /* fit3178_final_assessmentTests.swift */; };
-		0F61C8F229FD340000447934 /* fit3178_final_assessmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8F129FD340000447934 /* fit3178_final_assessmentUITests.swift */; };
-		0F61C8F429FD340000447934 /* fit3178_final_assessmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8F329FD340000447934 /* fit3178_final_assessmentUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +42,7 @@
 		0F61C8DC29FD340000447934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F61C8DE29FD340000447934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F61C8E329FD340000447934 /* fit3178_final_assessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F61C8E729FD340000447934 /* fit3178_final_assessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fit3178_final_assessmentTests.swift; sourceTree = "<group>"; };
 		0F61C8ED29FD340000447934 /* fit3178_final_assessmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F61C8F129FD340000447934 /* fit3178_final_assessmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fit3178_final_assessmentUITests.swift; sourceTree = "<group>"; };
-		0F61C8F329FD340000447934 /* fit3178_final_assessmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fit3178_final_assessmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				0F61C8CF29FD33FF00447934 /* fit3178_final_assessment */,
-				0F61C8E629FD340000447934 /* fit3178_final_assessmentTests */,
-				0F61C8F029FD340000447934 /* fit3178_final_assessmentUITests */,
 				0F61C8CE29FD33FF00447934 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,23 +100,6 @@
 				0F61C8DE29FD340000447934 /* Info.plist */,
 			);
 			path = fit3178_final_assessment;
-			sourceTree = "<group>";
-		};
-		0F61C8E629FD340000447934 /* fit3178_final_assessmentTests */ = {
-			isa = PBXGroup;
-			children = (
-				0F61C8E729FD340000447934 /* fit3178_final_assessmentTests.swift */,
-			);
-			path = fit3178_final_assessmentTests;
-			sourceTree = "<group>";
-		};
-		0F61C8F029FD340000447934 /* fit3178_final_assessmentUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0F61C8F129FD340000447934 /* fit3178_final_assessmentUITests.swift */,
-				0F61C8F329FD340000447934 /* fit3178_final_assessmentUITestsLaunchTests.swift */,
-			);
-			path = fit3178_final_assessmentUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F61C8E829FD340000447934 /* fit3178_final_assessmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F61C8F429FD340000447934 /* fit3178_final_assessmentUITestsLaunchTests.swift in Sources */,
-				0F61C8F229FD340000447934 /* fit3178_final_assessmentUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
