@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */; };
 		0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D029FD33FF00447934 /* AppDelegate.swift */; };
 		0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D229FD33FF00447934 /* SceneDelegate.swift */; };
 		0F61C8D529FD33FF00447934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D429FD33FF00447934 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		0F61C8CD29FD33FF00447934 /* fit3178_final_assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fit3178_final_assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F61C8D029FD33FF00447934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F61C8D229FD33FF00447934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */,
+				0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */,
 				0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */,
 				0FA1925F2A0352BD006EEB79 /* HomeViewController.swift in Sources */,
+				0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */,
 				0FA192562A033459006EEB79 /* MulticastDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

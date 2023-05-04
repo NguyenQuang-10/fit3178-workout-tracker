@@ -21,7 +21,7 @@ enum ListenerType {
 
 protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
-    func onWorkoutChange(change: DatabaseChange, workoutExercise: [Exercise])
+    func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout])
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise])
 }
 
@@ -29,8 +29,8 @@ protocol DatabaseProtocol: AnyObject {
     func cleanup()
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
-    func addExercise(name: String, sets: NSArray) -> Exercise
+    func addExercise(name: String, sets: [NSArray]) -> Exercise
     func deleteExercise(exercise: Exercise)
-    func addWorkout(name: String, schedule: NSArray) -> Workout
+    func addWorkout(name: String, schedule: [WeekDates]) -> Workout
     func addExerciseToWorkout(exercise: Exercise, workout: Workout)
 }

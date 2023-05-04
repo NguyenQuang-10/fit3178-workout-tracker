@@ -17,7 +17,7 @@ extension Exercise {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var sets: NSObject?
+    @NSManaged public var sets: [NSArray]?
     @NSManaged public var workouts: NSSet?
 
 }

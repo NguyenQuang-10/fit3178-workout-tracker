@@ -25,7 +25,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         } else if controller == allWorkoutsFetchedResultsController {
             listeners.invoke() { (listener) in
                 if listener.listenerType == .workout || listener.listenerType == .all {
-                    listener.onWorkoutChange(change: .update, workoutExercise: fetchAllExercises())
+                    listener.onWorkoutChange(change: .update, workoutExercise: fetchAllWorkouts())
                 }
             }
         }
@@ -35,10 +35,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         workout.addToExercises(exercise)
     }
     
-    func addWorkout(name: String, schedule: NSArray) -> Workout {
+    func addWorkout(name: String, schedule: [WeekDates]) -> Workout {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
         workout.name = name
-        workout.schedule = schedule
+        workout.schedule = schedule as? [NSEnumerator]
         
         return workout
     }
@@ -61,7 +61,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
         
         if listener.listenerType == .workout || listener.listenerType == .all {
-            listener.onWorkoutChange(change: .update, workoutExercise: fetchAllExercises())
+            listener.onWorkoutChange(change: .update, workoutExercise: fetchAllWorkouts())
         }
     }
     
@@ -69,7 +69,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         listeners.removeDelegate(listener)
     }
     
-    func addExercise(name: String, sets: NSArray) -> Exercise {
+    func addExercise(name: String, sets: [NSArray]) -> Exercise {
         let exercise = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: persistentContainer.viewContext) as! Exercise
         exercise.name = name
         exercise.sets = sets
@@ -141,18 +141,15 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         })
         super.init()
         if fetchAllWorkouts().count == 0 {
-            createDefaultExercises()
+            createDefaultWorkout()
         }
+//        let _ = addWorkout(name: "Back Day", schedule: [])
+//        cleanup()
     }
     
-    func createDefaultExercises() {
-        let _ = addExercise(name: "Bench Press", sets: [(8, 90)])
-        let _ = addExercise(name: "Squats", sets: [(6, 100)])
-        cleanup()
-    }
-    
+
     func createDefaultWorkout() {
         let _ = addWorkout(name: "Chest Day", schedule: [])
-        cleanup()
+        
     }
 }
