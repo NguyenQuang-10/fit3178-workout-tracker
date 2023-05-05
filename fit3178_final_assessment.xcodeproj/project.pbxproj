@@ -17,6 +17,7 @@
 		0F61C8D829FD33FF00447934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D629FD33FF00447934 /* Main.storyboard */; };
 		0F61C8DA29FD340000447934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D929FD340000447934 /* Assets.xcassets */; };
 		0F61C8DD29FD340000447934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */; };
+		0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */; };
 		0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FA192492A032C15006EEB79 /* DataModel.xcdatamodeld */; };
 		0FA192502A033390006EEB79 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924C2A033390006EEB79 /* Workout+CoreDataClass.swift */; };
 		0FA192512A033390006EEB79 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924D2A033390006EEB79 /* Workout+CoreDataProperties.swift */; };
@@ -61,6 +62,7 @@
 		0F61C8DE29FD340000447934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F61C8E329FD340000447934 /* fit3178_final_assessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F61C8ED29FD340000447934 /* fit3178_final_assessmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutDelegate.swift; sourceTree = "<group>"; };
 		0FA1924A2A032C15006EEB79 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		0FA1924C2A033390006EEB79 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		0FA1924D2A033390006EEB79 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -104,6 +106,7 @@
 				0FA1925C2A034782006EEB79 /* WeekDates.swift */,
 				0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */,
 				0F3CC3592A049E7A00715138 /* WorkoutScheduleDelegate.swift */,
+				0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */,
 				0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */,
 				0FA192512A033390006EEB79 /* Workout+CoreDataProperties.swift in Sources */,
 				0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */,

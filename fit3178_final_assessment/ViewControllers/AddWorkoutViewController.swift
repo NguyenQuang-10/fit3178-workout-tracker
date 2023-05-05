@@ -10,6 +10,17 @@ import UIKit
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate{
     var schedule: [WeekDates] = []
     
+    let dateAtRow: Dictionary<Int, String> = [
+        0: "Monday",
+        1: "Tuesday",
+        2: "Wednesday",
+        3: "Thursday",
+        4: "Friday",
+        5: "Saturday",
+        6: "Sunday"
+    ]
+    
+    @IBOutlet weak var scheduleLabel: UILabel!
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,6 +47,19 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            performSegue(withIdentifier: "workoutScheduleSegue", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "workoutScheduleSegue" {
+            let destination = segue.destination as! ScheduleTableViewController
+            destination.workoutScheduleDelegate = self
+        }
+    }
+    
 
     @IBAction func cancelAddWorkout(_ sender: Any) {
         self.dismiss(animated: true)
@@ -47,12 +71,22 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var menuTable: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        scheduleLabel.text = "Schedule: "
+        for date in schedule {
+            scheduleLabel.text! += dateAtRow[date.rawValue]!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         menuTable.layer.cornerRadius = 10.0
         menuTable.delegate = self
         menuTable.dataSource = self
+        
+        
 
         // Do any additional setup after loading the view.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -62,7 +96,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func createNewWorkout(_ sender: Any) {
         if let newName = workoutName.text, newName != "" {
-            let _ = databaseController?.addWorkout(name: newName, schedule: [])
+            let _ = databaseController?.addWorkout(name: newName, schedule: schedule)
             self.dismiss(animated: true)
         }
         

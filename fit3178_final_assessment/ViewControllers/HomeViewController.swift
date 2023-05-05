@@ -7,10 +7,22 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate {
+    var schedule = [WeekDates]()
+    
     var listenerType: ListenerType = .workout
     weak var databaseController: DatabaseProtocol?
     var allWorkouts: [Workout] = []
+    
+    let dateAtRow: Dictionary<Int, String> = [
+        0: "Monday",
+        1: "Tuesday",
+        2: "Wednesday",
+        3: "Thursday",
+        4: "Friday",
+        5: "Saturday",
+        6: "Sunday"
+    ]
     
     @IBOutlet weak var workoutTableView: UITableView!
     
@@ -66,7 +78,12 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
 
         let workout = allWorkouts[indexPath.row]
         cell.title?.text = workout.name
-
+        cell.subtitle?.text = String(workout.schedule!.count)
+        
+        for date in workout.schedule! {
+            cell.subtitle?.text! += dateAtRow[date]!
+            
+        }
         return cell
     }
     
@@ -74,6 +91,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         return 120.0
     }
 
+    
 
     /*
     // MARK: - Navigation

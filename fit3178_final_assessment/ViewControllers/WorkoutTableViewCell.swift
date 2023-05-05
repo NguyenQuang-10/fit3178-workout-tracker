@@ -9,6 +9,7 @@ import UIKit
 
 class WorkoutTableViewCell: UITableViewCell {
 
+
     @IBOutlet weak var subtitle: UILabel!
     
     @IBOutlet weak var title: UILabel!

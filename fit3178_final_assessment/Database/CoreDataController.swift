@@ -38,7 +38,11 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     func addWorkout(name: String, schedule: [WeekDates]) -> Workout {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
         workout.name = name
-        workout.schedule = schedule as? [NSEnumerator]
+        var newSchedule = [Int]()
+        for date in schedule {
+            newSchedule.append(date.rawValue)
+        }
+        workout.schedule = newSchedule
         
         return workout
     }

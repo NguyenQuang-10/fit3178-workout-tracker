@@ -17,7 +17,7 @@ extension Workout {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var schedule: [NSEnumerator]?
+    @NSManaged public var schedule: [Int]?
     @NSManaged public var exercises: NSSet?
 
 }

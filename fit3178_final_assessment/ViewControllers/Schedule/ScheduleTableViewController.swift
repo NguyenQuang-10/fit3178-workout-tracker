@@ -7,23 +7,43 @@
 
 import UIKit
 
-class ScheduleTableViewController: UITableViewController {
+class ScheduleTableViewController: UITableViewController, AddWorkoutDelegate {
 
-    var selected: [Bool] = [false, false, false, false, false, false, false]
-    let dateAtRow: Dictionary<Int, WeekDates> = [
-        0: .monday,
-        1: .tuesday,
-        2: .wednesday,
-        3: .thursday,
-        4: .friday,
-        5: .saturday,
-        6: .sunday
+    var schedule = [WeekDates]()
+    var selectedIndexPaths = Set<IndexPath>()
+    var workoutScheduleDelegate: WorkoutScheduleDelegate?
+    let dateAtRow: Dictionary<Int, String> = [
+        0: "Monday",
+        1: "Tuesday",
+        2: "Wednesday",
+        3: "Thursday",
+        4: "Friday",
+        5: "Saturday",
+        6: "Sunday"
     ]
+    let rowAtDate: Dictionary<WeekDates, Int> = [
+        .monday: 0,
+        .tuesday: 1,
+        .wednesday: 2,
+        .thursday: 3,
+        .friday: 4,
+        .saturday: 5,
+        .sunday: 6
+    ]
+    
+    @IBAction func saveSchedule(_ sender: Any) {
+        workoutScheduleDelegate?.schedule = self.schedule
+        navigationController?.popViewController(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.allowsMultipleSelection = true
+        schedule = workoutScheduleDelegate!.schedule
+        for date in schedule {
+            selectedIndexPaths.insert(IndexPath(row: rowAtDate[date]!, section: 0))
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -49,25 +69,49 @@ class ScheduleTableViewController: UITableViewController {
         
         
         var content = cell.defaultContentConfiguration()
-        if selected[indexPath.row] == true {
-            cell.accessoryType = .checkmark
-        }
-        content.text = String(dateAtRow[indexPath.row]!.rawValue)
+        content.text = String(dateAtRow[indexPath.row]!)
         cell.contentConfiguration = content
-
+        
+//        if selectedIndexPaths.contains(indexPath) {
+//            cell.accessoryType = .checkmark
+//        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selected[indexPath.row] = true
-        tableView.reloadData()
+        if selectedIndexPaths.contains(indexPath) {
+            selectedIndexPaths.remove(indexPath)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            print(schedule.count)
+            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row) })
+            print(schedule.count)
+        } else {
+            selectedIndexPaths.insert(indexPath) //select
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            schedule.append(WeekDates(rawValue: indexPath.row)!)
+        }
     
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        selected[indexPath.row] = false
-        tableView.reloadData()
+        if selectedIndexPaths.contains(indexPath) {
+            selectedIndexPaths.remove(indexPath)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row) })
+        } else {
+            selectedIndexPaths.insert(indexPath) //select
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            schedule.append(WeekDates(rawValue: indexPath.row)!)
+        }
+            
+        
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
+    }
+    
     
 
     /*

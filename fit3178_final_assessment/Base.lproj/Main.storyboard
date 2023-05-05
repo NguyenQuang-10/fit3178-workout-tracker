@@ -55,6 +55,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="subtitle" destination="PUC-za-HEI" id="ZZD-dQ-HwU"/>
                                             <outlet property="title" destination="aAG-Qa-L0q" id="XFw-mx-VoY"/>
                                         </connections>
                                     </tableViewCell>
@@ -141,12 +142,16 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                        <connections>
-                                            <segue destination="i4r-Zs-53G" kind="show" id="Sfm-Qv-S0Q"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedule:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whw-Tj-Mu8">
+                                <rect key="frame" x="36" y="626" width="333" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iq9-Y9-1as"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -161,12 +166,14 @@
                     <connections>
                         <outlet property="createWorkout" destination="8O3-06-nH2" id="YZd-Zt-c8n"/>
                         <outlet property="menuTable" destination="XLA-1N-nfu" id="8Ax-rg-OEX"/>
+                        <outlet property="scheduleLabel" destination="Whw-Tj-Mu8" id="h7K-V9-2UF"/>
                         <outlet property="workoutName" destination="n37-tq-e5L" id="Xd4-sd-zgN"/>
+                        <segue destination="i4r-Zs-53G" kind="show" identifier="workoutScheduleSegue" id="QgT-UE-aQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0l-1e-znn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2739.6946564885493" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="2725.9541984732823" y="-39.436619718309863"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="RXO-mg-KLt">
@@ -200,7 +207,13 @@
                             <outlet property="delegate" destination="i4r-Zs-53G" id="Bgj-Pr-owl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" style="editor" id="Ifl-GN-qBe"/>
+                    <navigationItem key="navigationItem" title="Schedule" style="editor" id="Ifl-GN-qBe">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="LGh-cD-Dri">
+                            <connections>
+                                <action selector="saveSchedule:" destination="i4r-Zs-53G" id="NvJ-ox-eXV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0c-a9-ph4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
