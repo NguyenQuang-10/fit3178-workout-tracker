@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         allWorkouts = workoutExercise
+        workoutTableView.reloadData()
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
