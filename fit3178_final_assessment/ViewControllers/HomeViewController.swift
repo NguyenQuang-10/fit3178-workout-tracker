@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
 
         let workout = allWorkouts[indexPath.row]
         cell.title?.text = workout.name
-        cell.subtitle?.text = String(workout.schedule!.count)
+        cell.subtitle?.text = String(workout.schedule!.count  )
         
         for date in workout.schedule! {
             cell.subtitle?.text! += dateAtRow[date]!

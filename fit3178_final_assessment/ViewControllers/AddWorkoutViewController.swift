@@ -68,6 +68,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var createWorkout: UIButton!
     
     weak var databaseController: DatabaseProtocol?
+    weak var firebaseController: DatabaseProtocol? // remove after testing
     
     @IBOutlet weak var menuTable: UITableView!
     
@@ -91,12 +92,14 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
+        firebaseController = appDelegate?.firebaseController
         
     }
     
     @IBAction func createNewWorkout(_ sender: Any) {
         if let newName = workoutName.text, newName != "" {
             let _ = databaseController?.addWorkout(name: newName, schedule: schedule)
+            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule)
             self.dismiss(animated: true)
         }
         

@@ -35,7 +35,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         workout.addToExercises(exercise)
     }
     
-    func addWorkout(name: String, schedule: [WeekDates]) -> Workout {
+    func addWorkout(name: String, schedule: [WeekDates]) -> AnyObject {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
         workout.name = name
         var newSchedule = [Int]()
@@ -73,7 +73,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         listeners.removeDelegate(listener)
     }
     
-    func addExercise(name: String, sets: [NSArray]) -> Exercise {
+    func addExercise(name: String, sets: [NSArray]) -> AnyObject {
         let exercise = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: persistentContainer.viewContext) as! Exercise
         exercise.name = name
         exercise.sets = sets

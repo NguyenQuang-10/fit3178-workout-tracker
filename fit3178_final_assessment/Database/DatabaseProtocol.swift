@@ -29,8 +29,8 @@ protocol DatabaseProtocol: AnyObject {
     func cleanup()
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
-    func addExercise(name: String, sets: [NSArray]) -> Exercise
+    func addExercise(name: String, sets: [NSArray]) -> AnyObject
     func deleteExercise(exercise: Exercise)
-    func addWorkout(name: String, schedule: [WeekDates]) -> Workout
+    func addWorkout(name: String, schedule: [WeekDates]) -> AnyObject
     func addExerciseToWorkout(exercise: Exercise, workout: Workout)
 }
