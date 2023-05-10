@@ -17,6 +17,7 @@
 		0F61C8D829FD33FF00447934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D629FD33FF00447934 /* Main.storyboard */; };
 		0F61C8DA29FD340000447934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D929FD340000447934 /* Assets.xcassets */; };
 		0F61C8DD29FD340000447934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */; };
+		0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */; };
 		0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */; };
 		0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60472A0B5AD10083B700 /* FirebaseController.swift */; };
 		0F9C604B2A0B5E7E0083B700 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604A2A0B5E7E0083B700 /* FirebaseAuth */; };
@@ -69,6 +70,8 @@
 		0F61C8DE29FD340000447934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F61C8E329FD340000447934 /* fit3178_final_assessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F61C8ED29FD340000447934 /* fit3178_final_assessmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fit3178_final_assessmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseTableViewController.swift; sourceTree = "<group>"; };
+		0F708B972A0B87FE001A1FC0 /* NotesAndTODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NotesAndTODO.md; sourceTree = "<group>"; };
 		0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutDelegate.swift; sourceTree = "<group>"; };
 		0F9C60472A0B5AD10083B700 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0F9C60502A0B5F0F0083B700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 				0F61C8D929FD340000447934 /* Assets.xcassets */,
 				0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */,
 				0F61C8DE29FD340000447934 /* Info.plist */,
+				0F708B972A0B87FE001A1FC0 /* NotesAndTODO.md */,
 			);
 			path = fit3178_final_assessment;
 			sourceTree = "<group>";
@@ -201,6 +205,7 @@
 				0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */,
 				0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */,
 				0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */,
+				0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				0FA192522A033390006EEB79 /* Exercise+CoreDataClass.swift in Sources */,
 				0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */,
 				0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */,
+				0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */,
 				0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */,
 				0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */,
 				0FA192532A033390006EEB79 /* Exercise+CoreDataProperties.swift in Sources */,
