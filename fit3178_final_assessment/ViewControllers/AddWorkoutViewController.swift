@@ -9,6 +9,7 @@ import UIKit
 
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate{
     var schedule: [WeekDates] = []
+    var exercises: [ExerciseSet] = []
     
     let dateAtRow: Dictionary<Int, String> = [
         0: "Monday",
@@ -50,6 +51,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
             performSegue(withIdentifier: "workoutScheduleSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "workoutExerciseSegue", sender: self)
         }
     }
     
@@ -98,8 +101,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func createNewWorkout(_ sender: Any) {
         if let newName = workoutName.text, newName != "" {
-            let _ = databaseController?.addWorkout(name: newName, schedule: schedule)
-            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule)
+            let _ = databaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
+            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
             self.dismiss(animated: true)
         }
         

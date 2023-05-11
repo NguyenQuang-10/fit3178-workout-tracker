@@ -55,15 +55,27 @@ class FirebaseController: NSObject, DatabaseProtocol {
         listeners.removeDelegate(listener)
     }
     
-    func addExercise(name: String, sets: [NSArray]) -> AnyObject {
-        return Exercise()
+    func addExercise(name: String, desc: String, imageURL: String) -> AnyObject {
+        let exercise = FirebaseExercise()
+        exercise.name = name
+        exercise.desc = desc
+        exercise.imageURL = imageURL
+        do {
+            if let exerciseRef = try exercissRef?.addDocument(from: exercise) {
+                exercise.id = exerciseRef.documentID
+            }
+        } catch {
+            print("Failed to serialize exercisee")
+        }
+        
+        return exercise
     }
     
     func deleteExercise(exercise: Exercise) {
         return
     }
     
-    func addWorkout(name: String, schedule: [WeekDates]) -> AnyObject {
+    func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject {
         let workout = FirebaseWorkout()
         workout.name = name
         workout.schedule = schedule.map { $0.rawValue }

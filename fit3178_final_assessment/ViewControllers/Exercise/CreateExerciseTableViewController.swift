@@ -1,13 +1,13 @@
 //
-//  AddExerciseTableViewController.swift
+//  CreateExerciseTableViewController.swift
 //  fit3178_final_assessment
 //
-//  Created by Nhat Nguyen on 10/5/2023.
+//  Created by Nhat Nguyen on 11/5/2023.
 //
 
 import UIKit
 
-class AddExerciseTableViewController: UITableViewController {
+class CreateExerciseTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F15E9E52A0C9374005CF4D8 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9DF2A0C9374005CF4D8 /* Workout+CoreDataClass.swift */; };
+		0F15E9E62A0C9374005CF4D8 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E02A0C9374005CF4D8 /* Workout+CoreDataProperties.swift */; };
+		0F15E9E72A0C9374005CF4D8 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E12A0C9374005CF4D8 /* Exercise+CoreDataClass.swift */; };
+		0F15E9E82A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E22A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift */; };
+		0F15E9E92A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E32A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift */; };
+		0F15E9EA2A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E42A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift */; };
 		0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */; };
 		0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */; };
 		0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */; };
@@ -27,15 +33,12 @@
 		0F9C60532A0B613E0083B700 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60522A0B613E0083B700 /* Workout.swift */; };
 		0F9C60552A0B614B0083B700 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60542A0B614B0083B700 /* Exercise.swift */; };
 		0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FA192492A032C15006EEB79 /* DataModel.xcdatamodeld */; };
-		0FA192502A033390006EEB79 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924C2A033390006EEB79 /* Workout+CoreDataClass.swift */; };
-		0FA192512A033390006EEB79 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924D2A033390006EEB79 /* Workout+CoreDataProperties.swift */; };
-		0FA192522A033390006EEB79 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924E2A033390006EEB79 /* Exercise+CoreDataClass.swift */; };
-		0FA192532A033390006EEB79 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1924F2A033390006EEB79 /* Exercise+CoreDataProperties.swift */; };
 		0FA192562A033459006EEB79 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA192552A033459006EEB79 /* MulticastDelegate.swift */; };
 		0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA192572A033481006EEB79 /* DatabaseProtocol.swift */; };
 		0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA192592A033860006EEB79 /* CoreDataController.swift */; };
 		0FA1925D2A034782006EEB79 /* WeekDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1925C2A034782006EEB79 /* WeekDates.swift */; };
 		0FA1925F2A0352BD006EEB79 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */; };
+		0FA838312A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA838302A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F15E9DF2A0C9374005CF4D8 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0F15E9E02A0C9374005CF4D8 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		0F15E9E12A0C9374005CF4D8 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0F15E9E22A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		0F15E9E32A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0F15E9E42A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -78,15 +87,12 @@
 		0F9C60522A0B613E0083B700 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		0F9C60542A0B614B0083B700 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0FA1924A2A032C15006EEB79 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		0FA1924C2A033390006EEB79 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		0FA1924D2A033390006EEB79 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		0FA1924E2A033390006EEB79 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		0FA1924F2A033390006EEB79 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0FA192552A033459006EEB79 /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		0FA192572A033481006EEB79 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		0FA192592A033860006EEB79 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		0FA1925C2A034782006EEB79 /* WeekDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDates.swift; sourceTree = "<group>"; };
 		0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0FA838302A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,11 +183,13 @@
 		0FA192482A032BE8006EEB79 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				0F15E9DF2A0C9374005CF4D8 /* Workout+CoreDataClass.swift */,
+				0F15E9E02A0C9374005CF4D8 /* Workout+CoreDataProperties.swift */,
+				0F15E9E12A0C9374005CF4D8 /* Exercise+CoreDataClass.swift */,
+				0F15E9E22A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift */,
+				0F15E9E32A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift */,
+				0F15E9E42A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift */,
 				0F9C60462A0B593D0083B700 /* FirebaseModel */,
-				0FA1924C2A033390006EEB79 /* Workout+CoreDataClass.swift */,
-				0FA1924D2A033390006EEB79 /* Workout+CoreDataProperties.swift */,
-				0FA1924E2A033390006EEB79 /* Exercise+CoreDataClass.swift */,
-				0FA1924F2A033390006EEB79 /* Exercise+CoreDataProperties.swift */,
 				0FA192492A032C15006EEB79 /* DataModel.xcdatamodeld */,
 			);
 			path = DataModel;
@@ -201,13 +209,22 @@
 		0FA1925B2A034308006EEB79 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0FA838322A0C7DCE0095DAC0 /* Exercise */,
 				0F3CC35B2A049E8400715138 /* Schedule */,
 				0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */,
 				0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */,
 				0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */,
-				0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0FA838322A0C7DCE0095DAC0 /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */,
+				0FA838302A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift */,
+			);
+			path = Exercise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,26 +367,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F15E9EA2A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift in Sources */,
 				0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */,
+				0F15E9E52A0C9374005CF4D8 /* Workout+CoreDataClass.swift in Sources */,
 				0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */,
-				0FA192512A033390006EEB79 /* Workout+CoreDataProperties.swift in Sources */,
 				0F9C60532A0B613E0083B700 /* Workout.swift in Sources */,
 				0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */,
 				0F9C60552A0B614B0083B700 /* Exercise.swift in Sources */,
 				0F61C8D529FD33FF00447934 /* ViewController.swift in Sources */,
 				0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */,
-				0FA192502A033390006EEB79 /* Workout+CoreDataClass.swift in Sources */,
 				0FA1925D2A034782006EEB79 /* WeekDates.swift in Sources */,
-				0FA192522A033390006EEB79 /* Exercise+CoreDataClass.swift in Sources */,
 				0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */,
+				0F15E9E92A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift in Sources */,
 				0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */,
+				0F15E9E82A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift in Sources */,
+				0F15E9E72A0C9374005CF4D8 /* Exercise+CoreDataClass.swift in Sources */,
 				0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */,
+				0FA838312A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift in Sources */,
 				0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */,
 				0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */,
-				0FA192532A033390006EEB79 /* Exercise+CoreDataProperties.swift in Sources */,
 				0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */,
 				0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */,
 				0FA1925F2A0352BD006EEB79 /* HomeViewController.swift in Sources */,
+				0F15E9E62A0C9374005CF4D8 /* Workout+CoreDataProperties.swift in Sources */,
 				0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */,
 				0FA192562A033459006EEB79 /* MulticastDelegate.swift in Sources */,
 			);

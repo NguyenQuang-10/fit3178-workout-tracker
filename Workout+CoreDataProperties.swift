@@ -2,7 +2,7 @@
 //  Workout+CoreDataProperties.swift
 //  fit3178_final_assessment
 //
-//  Created by Nhat Nguyen on 4/5/2023.
+//  Created by Nhat Nguyen on 11/5/2023.
 //
 //
 
@@ -26,10 +26,10 @@ extension Workout {
 extension Workout {
 
     @objc(addExercisesObject:)
-    @NSManaged public func addToExercises(_ value: Exercise)
+    @NSManaged public func addToExercises(_ value: ExerciseSet)
 
     @objc(removeExercisesObject:)
-    @NSManaged public func removeFromExercises(_ value: Exercise)
+    @NSManaged public func removeFromExercises(_ value: ExerciseSet)
 
     @objc(addExercises:)
     @NSManaged public func addToExercises(_ values: NSSet)

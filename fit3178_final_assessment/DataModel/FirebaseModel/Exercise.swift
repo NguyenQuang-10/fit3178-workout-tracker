@@ -11,11 +11,12 @@ import FirebaseFirestoreSwift
 class FirebaseExercise: NSObject, Codable {
     @DocumentID var id: String?
     var name: String?
-    var sets: [Dictionary<String, Int>] = []
+    var desc: String?
+    var imageURL: String?
     
     enum CodingKeys: String, CodingKey {
         case id
-        case name
-        case sets
+        case desc
+        case imageURL
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+
+
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
     
     var allExercisesFetchedResultsController: NSFetchedResultsController<Exercise>?
@@ -32,10 +34,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     func addExerciseToWorkout(exercise: Exercise, workout: Workout) {
-        workout.addToExercises(exercise)
+        
     }
     
-    func addWorkout(name: String, schedule: [WeekDates]) -> AnyObject {
+    func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
         workout.name = name
         var newSchedule = [Int]()
@@ -73,10 +75,11 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         listeners.removeDelegate(listener)
     }
     
-    func addExercise(name: String, sets: [NSArray]) -> AnyObject {
+    func addExercise(name: String, desc: String, imageURL: String) -> AnyObject {
         let exercise = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: persistentContainer.viewContext) as! Exercise
         exercise.name = name
-        exercise.sets = sets
+        exercise.desc = desc
+        exercise.imageURL = imageURL
         
         return exercise
     }
@@ -147,13 +150,20 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         if fetchAllWorkouts().count == 0 {
             createDefaultWorkout()
         }
+        if fetchAllExercises().count == 0 {
+            createDefaultExercise()
+        }
 //        let _ = addWorkout(name: "Back Day", schedule: [])
 //        cleanup()
     }
     
 
     func createDefaultWorkout() {
-        let _ = addWorkout(name: "Chest Day", schedule: [])
+        let _ = addWorkout(name: "Chest Day", schedule: [], setData: [])
         
+    }
+    
+    func createDefaultExercise() {
+        let _ = addExercise(name: "Bench press", desc: "Lay flat on a bench and press a barbell over your chest", imageURL: "")
     }
 }
