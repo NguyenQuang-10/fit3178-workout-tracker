@@ -8,7 +8,14 @@
 import UIKit
 
 class SetTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var intensityTextbox: UITextField!
+    
+    @IBOutlet weak var unitTextbox: UITextField!
+    
+    @IBOutlet weak var indexLabel: UILabel!
+    
+    @IBOutlet weak var repTextbox: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

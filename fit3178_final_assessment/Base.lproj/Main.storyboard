@@ -384,7 +384,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setCell" rowHeight="52" id="nQd-aH-rxI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="setCell" rowHeight="52" id="nQd-aH-rxI" customClass="SetTableViewCell" customModule="fit3178_final_assessment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="93.666667938232422" width="393" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nQd-aH-rxI" id="PQB-lb-oUa">
@@ -403,7 +403,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" systemColor="systemGray5Color"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxA-m4-O8C">
                                             <rect key="frame" x="289" y="9" width="97" height="34"/>
@@ -417,10 +417,16 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" systemColor="systemGray5Color"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="indexLabel" destination="ZtD-Na-7vl" id="JwM-cA-uvv"/>
+                                    <outlet property="intensityTextbox" destination="DNg-OM-bxr" id="F1R-ZO-XA1"/>
+                                    <outlet property="repTextbox" destination="37L-03-NiC" id="gwE-3R-Aum"/>
+                                    <outlet property="unitTextbox" destination="qxA-m4-O8C" id="I0j-9g-8wV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

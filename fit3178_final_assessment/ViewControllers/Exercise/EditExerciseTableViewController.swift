@@ -44,9 +44,12 @@ class EditExerciseTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! SetTableViewCell
 
-            // Configure the cell...
+            cell.indexLabel?.text = "\(indexPath.row + 1)"
+            cell.repTextbox?.text = "\(sets[indexPath.row].repetition)"
+            cell.intensityTextbox?.text = "\(sets[indexPath.row].intensity)"
+            cell.unitTextbox?.text = sets[indexPath.row].unit
 
             return cell
         } else {
