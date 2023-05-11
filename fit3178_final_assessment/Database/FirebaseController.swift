@@ -85,9 +85,11 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return workout
     }
     
-    func addExerciseToWorkout(exercise: Exercise, workout: Workout) {
-        return
+    func addExerciseSetToWorkout(exercise: Exercise, workout: Workout, repetition: Int, intensity: Int, unit: String) {
+        
     }
+    
+
     
     // MARK: - Firebase Controller Specific m=Methods
 //    func setupExerciseListener()

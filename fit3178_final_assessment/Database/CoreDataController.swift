@@ -12,6 +12,7 @@ import CoreData
 
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
     
+    
     var allExercisesFetchedResultsController: NSFetchedResultsController<Exercise>?
     var allWorkoutsFetchedResultsController: NSFetchedResultsController<Workout>?
     
@@ -33,9 +34,6 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
     }
     
-    func addExerciseToWorkout(exercise: Exercise, workout: Workout) {
-        
-    }
     
     func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
@@ -86,6 +84,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     
     func deleteExercise(exercise: Exercise) {
         persistentContainer.viewContext.delete(exercise)
+    }
+    
+    func addExerciseSetToWorkout(exercise: Exercise, workout: Workout, repetition: Int, intensity: Int, unit: String) {
+        
     }
     
     func fetchAllExercises() -> [Exercise] {

@@ -10,6 +10,7 @@ import UIKit
 class AddExerciseTableViewController: UITableViewController, DatabaseListener {
     var listenerType: ListenerType = .exercise
     weak var databaseController: DatabaseProtocol?
+    var delegate: AddExerciseDelegate?
     
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         
@@ -82,6 +83,11 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener {
             return cell
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.addExerciseToWorkout(exercise: exercisesInView[indexPath.row])
+        navigationController?.popViewController(animated: true)
     }
 
 

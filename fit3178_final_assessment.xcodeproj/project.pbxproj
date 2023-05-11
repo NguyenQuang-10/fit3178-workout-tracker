@@ -14,6 +14,7 @@
 		0F15E9E92A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E32A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift */; };
 		0F15E9EA2A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15E9E42A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift */; };
 		0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */; };
+		0F2FC6052A0CAA28005B4EE8 /* AddExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */; };
 		0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */; };
 		0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */; };
 		0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC3592A049E7A00715138 /* WorkoutScheduleDelegate.swift */; };
@@ -68,6 +69,7 @@
 		0F15E9E32A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		0F15E9E42A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseDelegate.swift; sourceTree = "<group>"; };
 		0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		0F3CC3592A049E7A00715138 /* WorkoutScheduleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutScheduleDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F2FC6062A0CAA2E005B4EE8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */,
+				0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		0F3CC35B2A049E8400715138 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,9 +236,9 @@
 		0FA838322A0C7DCE0095DAC0 /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
+				0F2FC6062A0CAA2E005B4EE8 /* Protocols */,
 				0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */,
 				0FA838302A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift */,
-				0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */,
 				0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */,
 			);
 			path = Exercise;
@@ -393,6 +404,7 @@
 				0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */,
 				0FA838312A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift in Sources */,
 				0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */,
+				0F2FC6052A0CAA28005B4EE8 /* AddExerciseDelegate.swift in Sources */,
 				0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */,
 				0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */,
 				0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */,
