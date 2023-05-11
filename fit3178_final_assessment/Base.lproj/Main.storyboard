@@ -169,7 +169,7 @@
                         <outlet property="scheduleLabel" destination="Whw-Tj-Mu8" id="h7K-V9-2UF"/>
                         <outlet property="workoutName" destination="n37-tq-e5L" id="Xd4-sd-zgN"/>
                         <segue destination="i4r-Zs-53G" kind="show" identifier="workoutScheduleSegue" id="QgT-UE-aQO"/>
-                        <segue destination="c8t-B0-1pT" kind="show" identifier="workoutExerciseSegue" id="rN0-wk-LYr"/>
+                        <segue destination="54E-gV-Lsb" kind="show" identifier="workoutExerciseSegue" id="2yC-5Z-oMN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0l-1e-znn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -219,6 +219,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0c-a9-ph4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3689" y="-332"/>
+        </scene>
+        <!--Exercises-->
+        <scene sceneID="rK2-qd-xIG">
+            <objects>
+                <viewController id="54E-gV-Lsb" customClass="ConfigureExerciseViewController" customModule="fit3178_final_assessment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3c8-65-871">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VVH-jj-0cl">
+                                <rect key="frame" x="0.0" y="56" width="393" height="586"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbF-8Y-agO">
+                                <rect key="frame" x="16" y="650" width="361" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Add Exercise"/>
+                                <connections>
+                                    <segue destination="c8t-B0-1pT" kind="show" id="abg-Ge-wdZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yip-an-gcT">
+                                <rect key="frame" x="16" y="693" width="361" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7KJ-N6-Vwk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Exercises" style="editor" id="3e2-Ct-Ihq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4pa-ct-d25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3690.8396946564885" y="508.45070422535213"/>
         </scene>
         <!--Add exercise-->
         <scene sceneID="E8g-T0-Afw">
@@ -287,7 +325,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nf3-8H-GF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3687.7862595419847" y="430.98591549295776"/>
+            <point key="canvasLocation" x="4677" y="508"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pK5-IE-Rpj">
@@ -303,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSZ-z2-PYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4685" y="446"/>
+            <point key="canvasLocation" x="5651" y="508"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o0o-Vh-0bk">

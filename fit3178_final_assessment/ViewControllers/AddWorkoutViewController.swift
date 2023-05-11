@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate{
+class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate, ConfigureExerciseDelegate{
     var schedule: [WeekDates] = []
     var exercises: [ExerciseSet] = []
     
@@ -60,6 +60,9 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "workoutScheduleSegue" {
             let destination = segue.destination as! ScheduleTableViewController
             destination.workoutScheduleDelegate = self
+        } else if segue.identifier == "workoutExerciseSegue" {
+            let destination = segue.destination as! ConfigureExerciseViewController
+            destination.delegate = self
         }
     }
     

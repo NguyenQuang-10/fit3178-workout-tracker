@@ -25,6 +25,8 @@
 		0F61C8DD29FD340000447934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */; };
 		0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */; };
 		0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */; };
+		0F7586F12A0C9C5C0027861E /* ConfigureExercisesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */; };
+		0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */; };
 		0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60472A0B5AD10083B700 /* FirebaseController.swift */; };
 		0F9C604B2A0B5E7E0083B700 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604A2A0B5E7E0083B700 /* FirebaseAuth */; };
 		0F9C604D2A0B5E7E0083B700 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604C2A0B5E7E0083B700 /* FirebaseFirestore */; };
@@ -82,6 +84,8 @@
 		0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseTableViewController.swift; sourceTree = "<group>"; };
 		0F708B972A0B87FE001A1FC0 /* NotesAndTODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NotesAndTODO.md; sourceTree = "<group>"; };
 		0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutDelegate.swift; sourceTree = "<group>"; };
+		0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExercisesDelegate.swift; sourceTree = "<group>"; };
+		0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExerciseViewController.swift; sourceTree = "<group>"; };
 		0F9C60472A0B5AD10083B700 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0F9C60502A0B5F0F0083B700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F9C60522A0B613E0083B700 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 			children = (
 				0F708B952A0B870E001A1FC0 /* AddExerciseTableViewController.swift */,
 				0FA838302A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift */,
+				0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */,
+				0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -379,10 +385,12 @@
 				0FA1925D2A034782006EEB79 /* WeekDates.swift in Sources */,
 				0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */,
 				0F15E9E92A0C9374005CF4D8 /* ExerciseSet+CoreDataClass.swift in Sources */,
+				0F7586F12A0C9C5C0027861E /* ConfigureExercisesDelegate.swift in Sources */,
 				0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */,
 				0F15E9E82A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift in Sources */,
 				0F15E9E72A0C9374005CF4D8 /* Exercise+CoreDataClass.swift in Sources */,
 				0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */,
+				0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */,
 				0FA838312A0C7DCA0095DAC0 /* CreateExerciseTableViewController.swift in Sources */,
 				0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */,
 				0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */,
