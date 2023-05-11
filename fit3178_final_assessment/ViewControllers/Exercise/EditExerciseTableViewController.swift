@@ -8,10 +8,15 @@
 import UIKit
 
 class EditExerciseTableViewController: UITableViewController {
+    
+    var delegate: EditExerciseDelegate?
+    var sets: [ExerciseSetStruct] = []
+    var editingExercise: Exercise?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        sets = (delegate?.getSetsForExercise(exercise: editingExercise!))!
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,23 +28,39 @@ class EditExerciseTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return sets.count
+        }
+        
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath)
 
-        // Configure the cell...
+            // Configure the cell...
 
-        return cell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell", for: indexPath)
+
+            var content = cell.defaultContentConfiguration()
+            content.text = "\(sets.count)"
+            cell.contentConfiguration = content
+            
+
+            return cell
+        }
+        
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

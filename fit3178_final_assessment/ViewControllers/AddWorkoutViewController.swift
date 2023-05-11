@@ -8,8 +8,10 @@
 import UIKit
 
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate, ConfigureExerciseDelegate{
+    
+    
     var schedule: [WeekDates] = []
-    var exercises: [ExerciseSet] = []
+    var exercises: Dictionary<Exercise, [ExerciseSetStruct]> = [:]
     
     let dateAtRow: Dictionary<Int, String> = [
         0: "Monday",
@@ -104,8 +106,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func createNewWorkout(_ sender: Any) {
         if let newName = workoutName.text, newName != "" {
-            let _ = databaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
-            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
+            let _ = databaseController?.addWorkout(name: newName, schedule: schedule, setData: [])
+            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule, setData: [])
             self.dismiss(animated: true)
         }
         

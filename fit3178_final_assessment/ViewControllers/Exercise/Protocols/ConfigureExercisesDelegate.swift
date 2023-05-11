@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol ConfigureExerciseDelegate {
-    var exercises: [ExerciseSet] {get set}
+    var exercises: Dictionary<Exercise, [ExerciseSetStruct]> {get set}
 }

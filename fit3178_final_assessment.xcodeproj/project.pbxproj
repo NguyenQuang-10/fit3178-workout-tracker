@@ -28,6 +28,9 @@
 		0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */; };
 		0F7586F12A0C9C5C0027861E /* ConfigureExercisesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */; };
 		0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */; };
+		0F8821EE2A0CCCB400DD94C0 /* EditExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */; };
+		0F8821F02A0CD06800DD94C0 /* ExerciseSetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */; };
+		0F8821F22A0CD80300DD94C0 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */; };
 		0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60472A0B5AD10083B700 /* FirebaseController.swift */; };
 		0F9C604B2A0B5E7E0083B700 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604A2A0B5E7E0083B700 /* FirebaseAuth */; };
 		0F9C604D2A0B5E7E0083B700 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604C2A0B5E7E0083B700 /* FirebaseFirestore */; };
@@ -89,6 +92,9 @@
 		0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutDelegate.swift; sourceTree = "<group>"; };
 		0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExercisesDelegate.swift; sourceTree = "<group>"; };
 		0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExerciseViewController.swift; sourceTree = "<group>"; };
+		0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseDelegate.swift; sourceTree = "<group>"; };
+		0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetStruct.swift; sourceTree = "<group>"; };
+		0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
 		0F9C60472A0B5AD10083B700 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0F9C60502A0B5F0F0083B700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F9C60522A0B613E0083B700 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 			children = (
 				0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */,
 				0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */,
+				0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -243,6 +250,8 @@
 				0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */,
 				0FA731352A0CC5A4003EB4B3 /* CreateExerciseViewController.swift */,
 				0FA731372A0CC9A9003EB4B3 /* EditExerciseTableViewController.swift */,
+				0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */,
+				0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -387,8 +396,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8821F22A0CD80300DD94C0 /* SetTableViewCell.swift in Sources */,
 				0F15E9EA2A0C9374005CF4D8 /* ExerciseSet+CoreDataProperties.swift in Sources */,
 				0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */,
+				0F8821EE2A0CCCB400DD94C0 /* EditExerciseDelegate.swift in Sources */,
 				0F15E9E52A0C9374005CF4D8 /* Workout+CoreDataClass.swift in Sources */,
 				0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */,
 				0F9C60532A0B613E0083B700 /* Workout.swift in Sources */,
@@ -415,6 +426,7 @@
 				0FA731362A0CC5A4003EB4B3 /* CreateExerciseViewController.swift in Sources */,
 				0F15E9E62A0C9374005CF4D8 /* Workout+CoreDataProperties.swift in Sources */,
 				0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */,
+				0F8821F02A0CD06800DD94C0 /* ExerciseSetStruct.swift in Sources */,
 				0FA192562A033459006EEB79 /* MulticastDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

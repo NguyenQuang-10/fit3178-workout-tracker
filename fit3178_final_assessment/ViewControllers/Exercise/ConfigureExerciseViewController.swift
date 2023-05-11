@@ -7,56 +7,32 @@
 
 import UIKit
 
-class ExerciseSetManager {
-    var exercisesToSet: Dictionary<Exercise, [ExerciseSet]> = [:]
-    var exerciseSet: Set<Exercise> = Set()
-    var exercises: [Exercise] = []
-    
-    init(from: [ExerciseSet]) {
-        for es in from {
-            if exerciseSet.contains(es.exercise!) {
-                exercisesToSet[es.exercise!]?.append(es)
-            } else {
-                exerciseSet.insert(es.exercise!)
-                exercises.append(es.exercise!)
-                exercisesToSet[es.exercise!] = []
-                exercisesToSet[es.exercise!]?.append(es)
-            }
-        }
-        print(getNumberOfExercises())
-    }
-    
-    func getSetsForExercise(exercise: Exercise) -> [ExerciseSet]{
-        return exercisesToSet[exercise]!
-    }
-    
-    func getExerciseForIndex(index: Int) -> Exercise{
-        return exercises[index]
-    }
-    
-    func addNewExercise(exercise: Exercise) {
-        exerciseSet.insert(exercise)
-        exercisesToSet[exercise] = []
-        exercises.append(exercise)
+class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UITableViewDelegate, UITableViewDataSource, EditExerciseDelegate {
+    func updateSetsForExercise(exercise: Exercise, exericseSets: [ExerciseSetStruct]) {
         
-        print(getNumberOfExercises())
     }
     
-    func getNumberOfExercises() -> Int {
-        return exercisesToSet.count
+    func getSetsForExercise(exercise: Exercise) -> [ExerciseSetStruct] {
+        return (delegate?.exercises[exercise])!
     }
-}
-
-class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            editingExercise = exerciseKeys![indexPath.row]
+            performSegue(withIdentifier: "editExerciseSegue", sender: self)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else {
-            return (setManager?.getNumberOfExercises())!
+            return (delegate?.exercises.count)!
         }
     }
 
@@ -65,13 +41,13 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = setManager?.getExerciseForIndex(index: indexPath.row).name
+            content.text = exerciseKeys![indexPath.row].name
             cell.contentConfiguration = content
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCountCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = "\(String(describing: setManager?.getNumberOfExercises())))"
+            content.text = "\(exerciseKeys!.count)"
             cell.contentConfiguration = content
             return cell
         }
@@ -79,19 +55,23 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     
     func addExerciseToWorkout(exercise: Exercise) {
         print("Im runinnnngg")
-        setManager?.addNewExercise(exercise: exercise)
+        let newBlankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "")
+        delegate?.exercises[exercise] = []
+        delegate?.exercises[exercise]?.append(newBlankSet)
+        exerciseKeys = Array((delegate?.exercises.keys)!)
         tableView.reloadData()
     }
     
     @IBOutlet weak var tableView: UITableView!
     
     var delegate: ConfigureExerciseDelegate?
-    var setManager: ExerciseSetManager?
+    var editingExercise: Exercise?
+    var exerciseKeys: [Exercise]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setManager = ExerciseSetManager(from: delegate!.exercises)
+        exerciseKeys = Array((delegate?.exercises.keys)!)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -107,6 +87,10 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
             print("Cheese")
             let destination = segue.destination as! AddExerciseTableViewController
             destination.delegate = self
+        } else if segue.identifier == "editExerciseSegue" {
+            let destination = segue.destination as! EditExerciseTableViewController
+            destination.delegate = self
+            destination.editingExercise = editingExercise
         }
     }
 
