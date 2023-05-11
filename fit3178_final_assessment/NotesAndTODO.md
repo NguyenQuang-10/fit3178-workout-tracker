@@ -1,5 +1,9 @@
 #  TODO
-- Restructure the database following notes below
+- In SetTableViewCell, declare a delegate that allows modification of the set in to main table view
+- Figure out then how to save that to the exerciseSets in configureExercise and so forth
+- integrate with coredata and save
+- integrate with firebase
+- implement login
 
 #  Notes
 - Maybe the sets for an exercise should be stored inside the workout
