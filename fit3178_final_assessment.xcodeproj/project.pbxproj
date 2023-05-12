@@ -16,12 +16,12 @@
 		0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */; };
 		0F2FC6052A0CAA28005B4EE8 /* AddExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */; };
 		0F34B1DF2A0DC43D001BBCF4 /* EditSetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34B1DE2A0DC43D001BBCF4 /* EditSetDelegate.swift */; };
+		0F34B1E32A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34B1E22A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift */; };
 		0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */; };
 		0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */; };
 		0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CC3592A049E7A00715138 /* WorkoutScheduleDelegate.swift */; };
 		0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D029FD33FF00447934 /* AppDelegate.swift */; };
 		0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D229FD33FF00447934 /* SceneDelegate.swift */; };
-		0F61C8D529FD33FF00447934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61C8D429FD33FF00447934 /* ViewController.swift */; };
 		0F61C8D829FD33FF00447934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D629FD33FF00447934 /* Main.storyboard */; };
 		0F61C8DA29FD340000447934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8D929FD340000447934 /* Assets.xcassets */; };
 		0F61C8DD29FD340000447934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */; };
@@ -76,13 +76,13 @@
 		0F19693A2A0391DD00D63E64 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseDelegate.swift; sourceTree = "<group>"; };
 		0F34B1DE2A0DC43D001BBCF4 /* EditSetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSetDelegate.swift; sourceTree = "<group>"; };
+		0F34B1E22A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWorkoutTableViewController.swift; sourceTree = "<group>"; };
 		0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		0F3CC3572A049D4600715138 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		0F3CC3592A049E7A00715138 /* WorkoutScheduleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutScheduleDelegate.swift; sourceTree = "<group>"; };
 		0F61C8CD29FD33FF00447934 /* fit3178_final_assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fit3178_final_assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F61C8D029FD33FF00447934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F61C8D229FD33FF00447934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0F61C8D429FD33FF00447934 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0F61C8D729FD33FF00447934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F61C8D929FD340000447934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F61C8DC29FD340000447934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -150,6 +150,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		0F34B1E12A0DD99C001BBCF4 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				0F34B1E22A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
 		0F3CC35B2A049E8400715138 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +196,6 @@
 				0FA192482A032BE8006EEB79 /* DataModel */,
 				0F61C8D029FD33FF00447934 /* AppDelegate.swift */,
 				0F61C8D229FD33FF00447934 /* SceneDelegate.swift */,
-				0F61C8D429FD33FF00447934 /* ViewController.swift */,
 				0F61C8D629FD33FF00447934 /* Main.storyboard */,
 				0F61C8D929FD340000447934 /* Assets.xcassets */,
 				0F61C8DB29FD340000447934 /* LaunchScreen.storyboard */,
@@ -236,6 +243,7 @@
 		0FA1925B2A034308006EEB79 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F34B1E12A0DD99C001BBCF4 /* Workout */,
 				0FA838322A0C7DCE0095DAC0 /* Exercise */,
 				0F3CC35B2A049E8400715138 /* Schedule */,
 				0FA1925E2A0352BD006EEB79 /* HomeViewController.swift */,
@@ -407,8 +415,8 @@
 				0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */,
 				0F9C60532A0B613E0083B700 /* Workout.swift in Sources */,
 				0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */,
+				0F34B1E32A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift in Sources */,
 				0F9C60552A0B614B0083B700 /* Exercise.swift in Sources */,
-				0F61C8D529FD33FF00447934 /* ViewController.swift in Sources */,
 				0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */,
 				0FA1925D2A034782006EEB79 /* WeekDates.swift in Sources */,
 				0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */,

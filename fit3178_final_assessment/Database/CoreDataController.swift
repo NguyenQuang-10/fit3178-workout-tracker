@@ -43,10 +43,14 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             newSchedule.append(date.rawValue)
         }
         for (e, setStructs ) in setData {
+            print("\(e.name) count of set: \(setStructs.count)")
             for s in setStructs {
+                print("\(s.unit)")
+                print("\(e.name)")
                 let exerciseSet = NSEntityDescription.insertNewObject(forEntityName: "ExerciseSet", into: persistentContainer.viewContext) as! ExerciseSet
                 exerciseSet.workout = workout
                 exerciseSet.exercise = e
+                print("\(exerciseSet.exercise?.name)")
                 exerciseSet.repetition = Int16(s.repetition)
                 exerciseSet.intensity = Int16(s.intensity)
                 exerciseSet.unit = s.unit

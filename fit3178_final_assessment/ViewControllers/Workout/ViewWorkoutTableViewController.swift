@@ -1,91 +1,91 @@
 //
-//  EditExerciseTableViewController.swift
+//  ViewWorkoutTableViewController.swift
 //  fit3178_final_assessment
 //
-//  Created by Nhat Nguyen on 11/5/2023.
+//  Created by Nhat Nguyen on 12/5/2023.
 //
 
 import UIKit
 
-class EditExerciseTableViewController: UITableViewController, editSetDelegate {
-    func updateSetAtRow(indexPath: IndexPath, updatedSet: ExerciseSetStruct) {
-        sets[indexPath.row] = updatedSet
-        tableView.reloadData()
-    }
-    
-    @IBAction func saveSets(_ sender: Any) {
-        delegate?.updateSetsForExercise(exercise: editingExercise!, exericseSets: sets)
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func addNewSet(_ sender: Any) {
-        var blankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "")
-        sets.append(blankSet)
-        tableView.reloadData()
-    }
-    
-    var delegate: EditExerciseDelegate?
-    var sets: [ExerciseSetStruct] = []
-    var editingExercise: Exercise?
+class ViewWorkoutTableViewController: UITableViewController {
 
+    var displayingWorkout: Workout?
+    var exerciseDict: Dictionary<Exercise, [ExerciseSet]> = [:]
+    var membershipSet: Set<Exercise> = Set()
+    var exerciseList: [Exercise] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sets = (delegate?.getSetsForExercise(exercise: editingExercise!))!
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let exerciseSetsUnordered = displayingWorkout?.exercises?.allObjects
+        for es in exerciseSetsUnordered! {
+            let exerciseSet = es as! ExerciseSet
+            
+            if let exercise = exerciseSet.exercise {
+                
+                if membershipSet.contains(exercise) {
+                    exerciseDict[exercise]?.append(exerciseSet)
+                } else {
+                    exerciseList.append(exercise)
+                    membershipSet.insert(exercise)
+                    exerciseDict[exercise] = []
+                    exerciseDict[exercise]?.append(exerciseSet)
+                }
+            }
+            
+            // Uncomment the following line to preserve selection between presentations
+            // self.clearsSelectionOnViewWillAppear = false
+            
+            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+            // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return exerciseList.count + 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 || section == 2{
+        if section == 0 {
             return 1
-        } else if section == 1 {
-            return sets.count
+        } else {
+            return exerciseDict[exerciseList[section - 1]]!.count
         }
-        
-        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Workout details"
+        } else {
+            return exerciseList[section - 1].name
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! SetTableViewCell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "workoutDetailCell", for: indexPath)
 
-            cell.delegate = self
-            cell.indexLabel?.text = "\(indexPath.row + 1)"
-            cell.repTextbox?.text = "\(sets[indexPath.row].repetition)"
-            cell.intensityTextbox?.text = "\(sets[indexPath.row].intensity)"
-            cell.unitTextbox?.text = sets[indexPath.row].unit
-            cell.indexPath = indexPath
-            cell.displayingSet = sets[indexPath.row]
-            
+            // Configure the cell...
 
-            return cell
-        } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "addSetCell", for: indexPath)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
 
             var content = cell.defaultContentConfiguration()
-            content.text = "\(sets.count)"
+            let exercise = exerciseList[indexPath.section - 1]
+            let exerciseSet = exerciseDict[exercise]![indexPath.row]
+            content.text = "\(indexPath.row + 1). Reps: \(exerciseSet.repetition) Intensity: \(exerciseSet.intensity) \(exerciseSet.unit ?? "Ambatukam")"
             cell.contentConfiguration = content
-            
 
             return cell
         }
         
     }
+
 
     /*
     // Override to support conditional editing of the table view.

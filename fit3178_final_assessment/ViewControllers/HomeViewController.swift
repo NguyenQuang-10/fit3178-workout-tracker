@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     var listenerType: ListenerType = .workout
     weak var databaseController: DatabaseProtocol?
     var allWorkouts: [Workout] = []
+    var willShowWorkout: Workout?
     
     let dateAtRow: Dictionary<Int, String> = [
         0: "Monday",
@@ -89,6 +90,18 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        willShowWorkout = allWorkouts[indexPath.row]
+        performSegue(withIdentifier: "showWorkoutSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWorkoutSegue" {
+            let destination = segue.destination as! ViewWorkoutTableViewController
+            destination.displayingWorkout = willShowWorkout
+        }
     }
 
     
