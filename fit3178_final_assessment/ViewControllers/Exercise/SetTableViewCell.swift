@@ -7,18 +7,42 @@
 
 import UIKit
 
-class SetTableViewCell: UITableViewCell {
+class SetTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var intensityTextbox: UITextField!
     
+    
     @IBOutlet weak var unitTextbox: UITextField!
     
+    
     @IBOutlet weak var indexLabel: UILabel!
+    
+    var indexPath: IndexPath?
+    var displayingSet: ExerciseSetStruct?
+    var delegate: editSetDelegate?
+    
     
     @IBOutlet weak var repTextbox: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        intensityTextbox?.delegate = self
+        unitTextbox?.delegate = self
+        repTextbox?.delegate = self
+    }
+
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == repTextbox {
+            displayingSet?.repetition = Int(textField.text ?? "") ?? 0
+            delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
+        } else if textField == intensityTextbox {
+            displayingSet?.intensity = Int(textField.text ?? "") ?? 0
+            delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
+        } else if textField == unitTextbox {
+            displayingSet?.unit = textField.text!
+            delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

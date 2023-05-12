@@ -31,6 +31,6 @@ protocol DatabaseProtocol: AnyObject {
     func removeListener(listener: DatabaseListener)
     func addExercise(name: String, desc: String, imageURL: String) -> AnyObject
     func deleteExercise(exercise: Exercise)
-    func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject
+    func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>) -> AnyObject
     func addExerciseSetToWorkout(exercise: Exercise, workout: Workout, repetition: Int, intensity: Int, unit: String)
 }

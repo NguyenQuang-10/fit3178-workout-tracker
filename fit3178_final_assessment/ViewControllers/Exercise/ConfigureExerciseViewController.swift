@@ -8,8 +8,13 @@
 import UIKit
 
 class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UITableViewDelegate, UITableViewDataSource, EditExerciseDelegate {
+    
+    
+    @IBAction func saveExercises(_ sender: Any) {
+    }
+    
     func updateSetsForExercise(exercise: Exercise, exericseSets: [ExerciseSetStruct]) {
-        
+        delegate?.exercises[exercise] = exericseSets
     }
     
     func getSetsForExercise(exercise: Exercise) -> [ExerciseSetStruct] {

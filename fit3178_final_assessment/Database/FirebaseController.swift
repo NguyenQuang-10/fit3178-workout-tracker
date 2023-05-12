@@ -75,7 +75,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return
     }
     
-    func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject {
+    func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>) -> AnyObject {
         let workout = FirebaseWorkout()
         workout.name = name
         workout.schedule = schedule.map { $0.rawValue }

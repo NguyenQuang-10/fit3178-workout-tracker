@@ -7,7 +7,16 @@
 
 import UIKit
 
-class EditExerciseTableViewController: UITableViewController {
+class EditExerciseTableViewController: UITableViewController, editSetDelegate {
+    func updateSetAtRow(indexPath: IndexPath, updatedSet: ExerciseSetStruct) {
+        sets[indexPath.row] = updatedSet
+        tableView.reloadData()
+    }
+    
+    @IBAction func saveSets(_ sender: Any) {
+        delegate?.updateSetsForExercise(exercise: editingExercise!, exericseSets: sets)
+        navigationController?.popViewController(animated: true)
+    }
     
     var delegate: EditExerciseDelegate?
     var sets: [ExerciseSetStruct] = []
@@ -28,12 +37,12 @@ class EditExerciseTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
+        if section == 0 || section == 2{
             return 1
         } else if section == 1 {
             return sets.count
@@ -46,11 +55,18 @@ class EditExerciseTableViewController: UITableViewController {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! SetTableViewCell
 
+            cell.delegate = self
             cell.indexLabel?.text = "\(indexPath.row + 1)"
             cell.repTextbox?.text = "\(sets[indexPath.row].repetition)"
             cell.intensityTextbox?.text = "\(sets[indexPath.row].intensity)"
             cell.unitTextbox?.text = sets[indexPath.row].unit
+            cell.indexPath = indexPath
+            cell.displayingSet = sets[indexPath.row]
+            
 
+            return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addSetCell", for: indexPath)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell", for: indexPath)

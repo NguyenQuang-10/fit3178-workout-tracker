@@ -35,12 +35,23 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     
-    func addWorkout(name: String, schedule: [WeekDates], setData: [ExerciseSet]) -> AnyObject {
+    func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>) -> AnyObject {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: persistentContainer.viewContext) as! Workout
         workout.name = name
         var newSchedule = [Int]()
         for date in schedule {
             newSchedule.append(date.rawValue)
+        }
+        for (e, setStructs ) in setData {
+            for s in setStructs {
+                let exerciseSet = NSEntityDescription.insertNewObject(forEntityName: "ExerciseSet", into: persistentContainer.viewContext) as! ExerciseSet
+                exerciseSet.workout = workout
+                exerciseSet.exercise = e
+                exerciseSet.repetition = Int16(s.repetition)
+                exerciseSet.intensity = Int16(s.intensity)
+                exerciseSet.unit = s.unit
+                workout.addToExercises(exerciseSet)
+            }
         }
         workout.schedule = newSchedule
         
@@ -82,12 +93,14 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         return exercise
     }
     
+    
+    
     func deleteExercise(exercise: Exercise) {
         persistentContainer.viewContext.delete(exercise)
     }
     
     func addExerciseSetToWorkout(exercise: Exercise, workout: Workout, repetition: Int, intensity: Int, unit: String) {
-        
+        let exerciseSet = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: persistentContainer.viewContext) as! Exercise
     }
     
     func fetchAllExercises() -> [Exercise] {
@@ -161,7 +174,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     
 
     func createDefaultWorkout() {
-        let _ = addWorkout(name: "Chest Day", schedule: [], setData: [])
+        let _ = addWorkout(name: "Chest Day", schedule: [], setData: [:])
         
     }
     
