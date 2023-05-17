@@ -31,6 +31,7 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     var userAddedExercise: [Exercise] = []
     var apiExercise: [Exercise] = []
     var firstLoad = true
+    var indicator = UIActivityIndicatorView()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,6 +51,60 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         } else if selectedScope == 1 {
             exercisesInView = apiExercise
             tableView.reloadData()
+        }
+    }
+    
+    func requestExerciseNamed(name: String) async {
+        var searchURLComponents = URLComponents()
+        searchURLComponents.scheme = "https"
+        searchURLComponents.host = "api.api-ninjas.com"
+          searchURLComponents.path = "/v1/exercises"
+        searchURLComponents.queryItems = [
+            URLQueryItem(name: "name", value: name)
+        ]
+
+        
+        guard let requestURL = searchURLComponents.url else {
+            print("Invalid URL.")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: requestURL)
+        urlRequest.addValue("/uHxz1lcZJpBSh+l9YRqYQ==4BHdbsLblM9LU6zP", forHTTPHeaderField: "X-Api-Key")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
+            
+            let decoder = JSONDecoder()
+            let apiResult = try decoder.decode([ExerciseAPIData].self, from: data)
+        
+            print(apiResult)
+        
+        }
+            catch let error {
+                print(error)
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text;
+        guard searchText != nil || searchText != "" else {
+            return;
+        }
+            apiExercise.removeAll()
+            tableView.reloadData()
+        
+            
+            
+            navigationItem.searchController?.dismiss(animated: true)
+            indicator.startAnimating()
+            
+            Task {
+                URLSession.shared.invalidateAndCancel()
+                await requestExerciseNamed(name: searchText!)
         }
     }
     
@@ -73,6 +128,17 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         navigationItem.searchController = searchController
         // Ensure the search bar is always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        // Add a loading indicator view
+        indicator.style = UIActivityIndicatorView.Style.large
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(indicator)
+        
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo:
+                    view.safeAreaLayoutGuide.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
