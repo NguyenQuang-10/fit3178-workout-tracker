@@ -7,22 +7,30 @@
 
 import UIKit
 
-class AddExerciseTableViewController: UITableViewController, DatabaseListener {
+class AddExerciseTableViewController: UITableViewController, DatabaseListener, UISearchBarDelegate {
     var listenerType: ListenerType = .exercise
     weak var databaseController: DatabaseProtocol?
     var delegate: AddExerciseDelegate?
-    
+        
+ 
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
-        exercisesInView = exercises
+        userAddedExercise = exercises
+        if firstLoad {
+            exercisesInView = exercises
+            firstLoad = false
+        }
         tableView.reloadData()
     }
     
     
     var exercisesInView: [Exercise] = []
+    var userAddedExercise: [Exercise] = []
+    var apiExercise: [Exercise] = []
+    var firstLoad = true
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,13 +43,36 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener {
         databaseController?.removeListener(listener: self)
     }
     
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope == 0 {
+            exercisesInView = userAddedExercise
+            tableView.reloadData()
+        } else if selectedScope == 1 {
+            exercisesInView = apiExercise
+            tableView.reloadData()
+        }
+    }
+    
 
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         super.viewDidLoad()
         
+        firstLoad = true
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.showsCancelButton = false
+        
+        searchController.searchBar.scopeButtonTitles = ["Added", "Suggested"]
+
+        
+        navigationItem.searchController = searchController
+        // Ensure the search bar is always visible.
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -54,34 +85,25 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return exercisesInView.count
-        }
+    
+        return exercisesInView.count
         
-        return 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "selectWorkoutTypeCell", for: indexPath)
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            let exerciseAtRow = exercisesInView[indexPath.row]
-            content.text = exerciseAtRow.name
-            content.secondaryText = exerciseAtRow.desc
-            cell.contentConfiguration = content
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        let exerciseAtRow = exercisesInView[indexPath.row]
+        content.text = exerciseAtRow.name
+        content.secondaryText = exerciseAtRow.desc
+        cell.contentConfiguration = content
+        return cell
         
     }
     

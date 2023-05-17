@@ -29,6 +29,7 @@
 		0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */; };
 		0F7586F12A0C9C5C0027861E /* ConfigureExercisesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */; };
 		0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */; };
+		0F85D7AA2A14BCA100E6309C /* DecodedAPIExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85D7A92A14BCA100E6309C /* DecodedAPIExercise.swift */; };
 		0F8821EE2A0CCCB400DD94C0 /* EditExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */; };
 		0F8821F02A0CD06800DD94C0 /* ExerciseSetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */; };
 		0F8821F22A0CD80300DD94C0 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */; };
@@ -94,6 +95,7 @@
 		0F71CB622A04AF080034F91A /* AddWorkoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutDelegate.swift; sourceTree = "<group>"; };
 		0F7586F02A0C9C5C0027861E /* ConfigureExercisesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExercisesDelegate.swift; sourceTree = "<group>"; };
 		0F7586F22A0C9D4D0027861E /* ConfigureExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureExerciseViewController.swift; sourceTree = "<group>"; };
+		0F85D7A92A14BCA100E6309C /* DecodedAPIExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedAPIExercise.swift; sourceTree = "<group>"; };
 		0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseDelegate.swift; sourceTree = "<group>"; };
 		0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetStruct.swift; sourceTree = "<group>"; };
 		0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				0FA731372A0CC9A9003EB4B3 /* EditExerciseTableViewController.swift */,
 				0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */,
 				0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */,
+				0F85D7A92A14BCA100E6309C /* DecodedAPIExercise.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				0F15E9E82A0C9374005CF4D8 /* Exercise+CoreDataProperties.swift in Sources */,
 				0F15E9E72A0C9374005CF4D8 /* Exercise+CoreDataClass.swift in Sources */,
 				0F708B962A0B870E001A1FC0 /* AddExerciseTableViewController.swift in Sources */,
+				0F85D7AA2A14BCA100E6309C /* DecodedAPIExercise.swift in Sources */,
 				0F7586F32A0C9D4D0027861E /* ConfigureExerciseViewController.swift in Sources */,
 				0FA1925A2A033860006EEB79 /* CoreDataController.swift in Sources */,
 				0F2FC6052A0CAA28005B4EE8 /* AddExerciseDelegate.swift in Sources */,
