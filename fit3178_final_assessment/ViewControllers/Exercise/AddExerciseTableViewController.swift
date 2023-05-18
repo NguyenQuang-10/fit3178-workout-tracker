@@ -7,6 +7,13 @@
 
 import UIKit
 
+struct ExerciseData {
+    var name: String
+    var desc: String
+    var imageURL: String
+    var exerciseInDB: Exercise?
+}
+
 class AddExerciseTableViewController: UITableViewController, DatabaseListener, UISearchBarDelegate {
     var listenerType: ListenerType = .exercise
     weak var databaseController: DatabaseProtocol?
@@ -18,23 +25,28 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
-        userAddedExercise = exercises
+        userAddedExercise.removeAll()
+        let _ = exercises.map {
+            var newUserAddedExercise = ExerciseData(name: $0.name!, desc: $0.desc!, imageURL: $0.imageURL!, exerciseInDB: $0)
+            userAddedExercise.append(newUserAddedExercise)
+        }
         if firstLoad {
-            exercisesInView = exercises
+            exercisesInView = userAddedExercise
             firstLoad = false
         }
         tableView.reloadData()
     }
     
     
-    var exercisesInView: [Exercise] = []
-    var userAddedExercise: [Exercise] = []
-    var apiExercise: [Exercise] = []
+    var exercisesInView: [ExerciseData] = []
+    var userAddedExercise: [ExerciseData] = []
+    var apiExercise: [ExerciseData] = []
     var firstLoad = true
     var indicator = UIActivityIndicatorView()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        firstLoad = true
         databaseController?.addListener(listener: self)
         
     }
@@ -42,6 +54,37 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         databaseController?.removeListener(listener: self)
+    }
+    
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text;
+        guard searchText != nil || searchText != "" else {
+            return;
+        }
+        apiExercise.removeAll()
+        exercisesInView.removeAll()
+        tableView.reloadData()
+    
+        // navigationItem.searchController?.dismiss(animated: true)
+        indicator.startAnimating()
+        
+        if searchBar.selectedScopeButtonIndex == 0 {
+            exercisesInView.removeAll();
+            let _ = userAddedExercise.map {
+                if $0.name.contains(searchText!) {
+                    exercisesInView.append($0)
+                }
+            }
+            indicator.stopAnimating()
+            tableView.reloadData()
+        } else {
+            Task {
+                URLSession.shared.invalidateAndCancel()
+                await requestExerciseNamed(name: searchText!)
+            }
+            
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -81,33 +124,22 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
             let decoder = JSONDecoder()
             let apiResult = try decoder.decode([ExerciseAPIData].self, from: data)
         
-            print(apiResult)
+            apiExercise.removeAll()
+            let _ = apiResult.map {
+                let desc = $0.muscle + " | " +  $0.difficulty + " | " + $0.equipment
+                var newApiExercise = ExerciseData(name: $0.name, desc: desc, imageURL: "")
+                apiExercise.append(newApiExercise)
+            }
+            
+            exercisesInView.removeAll()
+            exercisesInView = apiExercise
+            tableView.reloadData()
         
         }
             catch let error {
                 print(error)
         }
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        let searchText = searchBar.text;
-        guard searchText != nil || searchText != "" else {
-            return;
-        }
-            apiExercise.removeAll()
-            tableView.reloadData()
-        
-            
-            
-            navigationItem.searchController?.dismiss(animated: true)
-            indicator.startAnimating()
-            
-            Task {
-                URLSession.shared.invalidateAndCancel()
-                await requestExerciseNamed(name: searchText!)
-        }
-    }
-    
 
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -174,7 +206,14 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.addExerciseToWorkout(exercise: exercisesInView[indexPath.row])
+        
+        let exerciseData = exercisesInView[indexPath.row]
+        if let dbExercise = exerciseData.exerciseInDB, dbExercise != nil {
+            delegate?.addExerciseToWorkout(exercise: dbExercise)
+        } else {
+            let newDbExercise = databaseController?.addExercise(name: exerciseData.name, desc: exerciseData.desc, imageURL: exerciseData.imageURL)
+            delegate?.addExerciseToWorkout(exercise: newDbExercise! as! Exercise)
+        }
         navigationController?.popViewController(animated: true)
     }
 
