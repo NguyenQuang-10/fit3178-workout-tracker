@@ -6,18 +6,23 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var databaseController: DatabaseProtocol?
-    var firebaseController: DatabaseProtocol? // remove after testing
+    var firebaseController: FirebaseController? // remove after testing
+    var firebaseAuthController: FirebaseAuthenticationDelegate?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         databaseController = CoreDataController()
         firebaseController = FirebaseController() // remove after testing
+        firebaseAuthController = firebaseController
         return true
     }
 

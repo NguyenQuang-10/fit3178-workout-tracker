@@ -5,6 +5,14 @@
 - integrate with firebase
 - implement login
 
+18/5/2023
+- Figure out why more than one set gives error
+- Refactor Firebase datamodel to match coredata
+- Figure out how to clear coredata and sync data on login
+
+Next week:
+- basic implementation of notification, notify user a day before a workout
+
 #  Notes
 - Maybe the sets for an exercise should be stored inside the workout
 - And exercise can contain picture and description and name only

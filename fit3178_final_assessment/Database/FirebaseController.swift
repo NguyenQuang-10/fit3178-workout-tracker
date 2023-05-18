@@ -9,7 +9,9 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class FirebaseController: NSObject, DatabaseProtocol {
+class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDelegate {
+    
+    
     
     let listeners = MulticastDelegate<DatabaseListener>()
     
@@ -17,15 +19,74 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var database: Firestore
     var exercissRef: CollectionReference?
     var workoutsRef: CollectionReference?
+    var userRef: CollectionReference?
     var currentUser: FirebaseAuth.User?
-    
+        
     override init() {
         FirebaseApp.configure()
         authController = Auth.auth()
         database = Firestore.firestore()
+
         
         super.init()
         
+        if authController.currentUser != nil{
+            do {
+              try authController.signOut()
+            } catch let signOutError as NSError {
+              print("Error signing out: %@", signOutError)
+            }
+        }
+        
+//        Task {
+//            do {
+//                let authDataResult = try await authController.signInAnonymously()
+//                currentUser = authDataResult.user
+//            } catch {
+//                fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
+//            }
+//            
+////            self.setupExerciseListener()
+//            self.setupWorkoutListener()
+//        }
+        
+        
+    }
+    
+    func login(email: String, password: String) async throws {
+        let authResult = try await authController.signIn(withEmail: email, password: password)
+        currentUser = authResult.user
+        
+        if let _ = currentUser {
+            userRef = database.collection("user")
+            self.setupWorkoutListener()
+//            print(currentUser!.uid as String)
+        }
+
+    }
+    
+    func signup(email: String, password: String) async throws {
+        let authResult = try await authController.createUser(withEmail: email, password: password)
+        currentUser = authResult.user
+        
+
+        if let _ = currentUser {
+            userRef = database.collection("user")
+            
+            let _ = userRef?.document(currentUser!.uid).setData([:]) {
+                err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+            self.setupWorkoutListener()
+//            print(currentUser!.uid as String)
+        }
+    }
+    
+    func signinAnonmously() async throws {
         Task {
             do {
                 let authDataResult = try await authController.signInAnonymously()
@@ -33,13 +94,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
             } catch {
                 fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
             }
-            
+
 //            self.setupExerciseListener()
             self.setupWorkoutListener()
         }
-        
-        
     }
+    
+    
     
     func cleanup() {
         return
@@ -94,7 +155,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     // MARK: - Firebase Controller Specific m=Methods
 //    func setupExerciseListener()
     func setupWorkoutListener() {
-        workoutsRef = database.collection("workouts")
+        workoutsRef = userRef?.document(currentUser!.uid).collection("workouts")
     }
 //    func getExerciseByID()
 //    func getWorkoutByID()
