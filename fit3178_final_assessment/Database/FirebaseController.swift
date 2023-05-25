@@ -10,6 +10,26 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDelegate {
+    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
+//        var exerciseSet = FirebaseExerciseSet()
+//        exerciseSet.repetition = Int16(rep)
+//        exerciseSet.intensity = Int16(intensity)
+//        exerciseSet.unit = unit
+//        exerciseSet.exercise = ""
+//
+//
+//        do {
+//            if let exerciseRef = try exercissRef?.addDocument(from: exercise) {
+//                exercise.id = exerciseRef.documentID
+//            }
+//        } catch {
+//            print("Failed to serialize exercisee")
+//        }
+//
+//        return exercise
+        return ExerciseSet()
+    }
+    
     
     
     
@@ -73,7 +93,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         if let _ = currentUser {
             userRef = database.collection("user")
             
-            let _ = userRef?.document(currentUser!.uid).setData([:]) {
+            let _ = userRef?.document(currentUser!.uid).setData(["user-id": currentUser!.uid]) {
                 err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -82,7 +102,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
                 }
             }
             self.setupWorkoutListener()
-//            print(currentUser!.uid as String)
+            print(currentUser!.uid as String)
         }
     }
     
@@ -116,14 +136,16 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         listeners.removeDelegate(listener)
     }
     
-    func addExercise(name: String, desc: String, imageURL: String) -> AnyObject {
+    func addExercise(name: String, desc: String, imageURL: String, id: String) -> AnyObject {
         let exercise = FirebaseExercise()
         exercise.name = name
         exercise.desc = desc
         exercise.imageURL = imageURL
+        
+        
         do {
-            if let exerciseRef = try exercissRef?.addDocument(from: exercise) {
-                exercise.id = exerciseRef.documentID
+            if (try exercissRef?.document(id).setData(from: exercise)) != nil {
+                print("Successfully serialize exercise")
             }
         } catch {
             print("Failed to serialize exercisee")
@@ -132,17 +154,24 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         return exercise
     }
     
+    
     func deleteExercise(exercise: Exercise) {
         return
     }
     
-    func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>) -> AnyObject {
+    func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>, id: String) -> AnyObject {
         let workout = FirebaseWorkout()
         workout.name = name
         workout.schedule = schedule.map { $0.rawValue }
-        if let workoutRef = workoutsRef?.addDocument(data: ["name" : name, "schedule" : schedule.map { $0.rawValue}]) {
-            workout.id = workoutRef.documentID
+        do {
+            if (try workoutsRef?.document(id).setData(from: workout)) != nil {
+                print("Successful serializing workout")
+            }
+            return workout
+        } catch {
+            print("Fail serializing workout")
         }
+        
         return workout
     }
     
@@ -153,8 +182,12 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
 
     
     // MARK: - Firebase Controller Specific m=Methods
-//    func setupExerciseListener()
+    func setupExerciseListener() {
+//        setupWorkoutListener()
+        exercissRef = userRef?.document(currentUser!.uid).collection("exercises")
+    }
     func setupWorkoutListener() {
+        setupExerciseListener()
         workoutsRef = userRef?.document(currentUser!.uid).collection("workouts")
     }
 //    func getExerciseByID()

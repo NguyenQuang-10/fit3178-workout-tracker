@@ -106,8 +106,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func createNewWorkout(_ sender: Any) {
         if let newName = workoutName.text, newName != "" {
-            let _ = databaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
-            let _ = firebaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises)
+            let _ = databaseController?.addWorkout(name: newName, schedule: schedule, setData: exercises, id: UUID().uuidString)
             self.dismiss(animated: true)
         }
         

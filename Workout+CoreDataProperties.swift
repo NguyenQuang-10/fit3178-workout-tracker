@@ -2,7 +2,7 @@
 //  Workout+CoreDataProperties.swift
 //  fit3178_final_assessment
 //
-//  Created by Nhat Nguyen on 11/5/2023.
+//  Created by Nhat Nguyen on 25/5/2023.
 //
 //
 
@@ -18,6 +18,7 @@ extension Workout {
 
     @NSManaged public var name: String?
     @NSManaged public var schedule: [Int]?
+    @NSManaged public var fbid: String?
     @NSManaged public var exercises: NSSet?
 
 }

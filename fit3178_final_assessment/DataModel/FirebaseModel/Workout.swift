@@ -12,7 +12,7 @@ class FirebaseWorkout: NSObject, Codable {
     @DocumentID var id: String?
     var name: String?
     var schedule: [Int] = []
-    var exercises: [FirebaseExercise] = []
+    var exercises: [String] = []
     
     enum CodingKeys: String, CodingKey {
         case id

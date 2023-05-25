@@ -211,7 +211,7 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         if let dbExercise = exerciseData.exerciseInDB, dbExercise != nil {
             delegate?.addExerciseToWorkout(exercise: dbExercise)
         } else {
-            let newDbExercise = databaseController?.addExercise(name: exerciseData.name, desc: exerciseData.desc, imageURL: exerciseData.imageURL)
+            let newDbExercise = databaseController?.addExercise(name: exerciseData.name, desc: exerciseData.desc, imageURL: exerciseData.imageURL, id: UUID().uuidString)
             delegate?.addExerciseToWorkout(exercise: newDbExercise! as! Exercise)
         }
         navigationController?.popViewController(animated: true)

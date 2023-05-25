@@ -16,6 +16,7 @@ class FirebaseExercise: NSObject, Codable {
     
     enum CodingKeys: String, CodingKey {
         case id
+        case name
         case desc
         case imageURL
     }

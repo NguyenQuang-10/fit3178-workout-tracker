@@ -8,20 +8,25 @@
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var databaseController: DatabaseProtocol?
+    var databaseController: SyncController?
+    var coreDataController: CoreDataController?
     var firebaseController: FirebaseController? // remove after testing
     var firebaseAuthController: FirebaseAuthenticationDelegate?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        UNUserNotificationCenter.current().delegate = self
         
-        
-        databaseController = CoreDataController()
+        databaseController = SyncController()
+        coreDataController = CoreDataController()
         firebaseController = FirebaseController() // remove after testing
+        databaseController!.coreDataController = coreDataController
+        databaseController!.firebaseController = firebaseController
         firebaseAuthController = firebaseController
         return true
     }

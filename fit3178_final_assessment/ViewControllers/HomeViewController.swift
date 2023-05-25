@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate {
     var schedule = [WeekDates]()
@@ -30,6 +31,11 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         allWorkouts = workoutExercise
         workoutTableView.reloadData()
+        
+        
+        
+        // for testing onlys
+       
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
@@ -53,9 +59,31 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         workoutTableView.dataSource = self
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
+        
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (granted, error) in
+            if !granted {
+                print("Permission was not granted!")
+                return
+            }
+        }
+//        let notificationContent = UNMutableNotificationContent()
+//        // Create its detailss
+//        notificationContent.title = "Workout changed!"
+//        notificationContent.subtitle = "asdfasfsdf"
+//        notificationContent.body = "[TEST] removed after testing"
+//
+//        let timeInterval = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//
+//        let request = UNNotificationRequest(identifier: "45425673452345s",
+//                content: notificationContent, trigger: timeInterval)
+//        UNUserNotificationCenter.current().add(request) { error in
+//            if let error = error {
+//              print(error)
+//            }
+//          }
+        
         super.viewDidLoad()
-        
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -78,8 +106,9 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutTableViewCell
 
         let workout = allWorkouts[indexPath.row]
+        print(workout.name)
         cell.title?.text = workout.name
-        cell.subtitle?.text = String(workout.schedule!.count  )
+        cell.subtitle?.text = String(workout.schedule?.count ?? 0 )
         
         for date in workout.schedule! {
             cell.subtitle?.text! += dateAtRow[date]!
