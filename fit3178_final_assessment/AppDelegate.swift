@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coreDataController: CoreDataController?
     var firebaseController: FirebaseController? // remove after testing
     var firebaseAuthController: FirebaseAuthenticationDelegate?
+    let notificationHandler: NotificationHandler = NotificationHandler()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

@@ -20,7 +20,7 @@ class NotificationHandler: NSObject, DatabaseListener {
     
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         workouts = workoutExercise
-//        scheduleNotification()
+        scheduleNotification()
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {

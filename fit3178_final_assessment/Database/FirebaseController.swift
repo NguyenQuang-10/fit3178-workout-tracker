@@ -213,9 +213,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
 //    func parseWorkoutSnapshot(snapshot: QuerySnapshot)
 //    func parseExerciseSnapshot(snapshot: QueryDocumentSnapshot)
     
-    func getUserWorkouts() -> Dictionary<String, String> {
-        
-    }
+
     
 
 }
