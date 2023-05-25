@@ -24,7 +24,7 @@ class CreateExerciseViewController: UIViewController {
 
     @IBAction func saveExercise(_ sender: Any) {
         if let newName = exerciseName.text, newName != "", let newDesc = exerciseDesc.text, newDesc != "" {
-            let _ = databaseController?.addExercise(name: newName, desc: newDesc, imageURL: "")
+            let _ = databaseController?.addExercise(name: newName, desc: newDesc, imageURL: "", id: UUID().uuidString)
             navigationController?.popViewController(animated: true)
         }
     }

@@ -10,24 +10,32 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDelegate {
+    func clearAllData() {
+        
+    }
+    
+    func syncWithOnline() {
+        
+    }
+    
     func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
-//        var exerciseSet = FirebaseExerciseSet()
-//        exerciseSet.repetition = Int16(rep)
-//        exerciseSet.intensity = Int16(intensity)
-//        exerciseSet.unit = unit
-//        exerciseSet.exercise = ""
-//
-//
-//        do {
-//            if let exerciseRef = try exercissRef?.addDocument(from: exercise) {
-//                exercise.id = exerciseRef.documentID
-//            }
-//        } catch {
-//            print("Failed to serialize exercisee")
-//        }
-//
-//        return exercise
-        return ExerciseSet()
+        var exerciseSet = FirebaseExerciseSet()
+        exerciseSet.repetition = Int16(rep)
+        exerciseSet.intensity = Int16(intensity)
+        exerciseSet.unit = unit
+        exerciseSet.exercise = exerciseID
+        exerciseSet.workout = workoutID
+
+
+        do {
+            if let exerciseSetRef = try exerciseSetRef?.addDocument(from: exerciseSet) {
+                exerciseSet.id = exerciseSetRef.documentID
+            }
+        } catch {
+            print("Failed to serialize exercisee")
+        }
+
+        return exerciseSet
     }
     
     
@@ -39,6 +47,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
     var database: Firestore
     var exercissRef: CollectionReference?
     var workoutsRef: CollectionReference?
+    var exerciseSetRef: CollectionReference?
     var userRef: CollectionReference?
     var currentUser: FirebaseAuth.User?
         
@@ -163,6 +172,14 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         let workout = FirebaseWorkout()
         workout.name = name
         workout.schedule = schedule.map { $0.rawValue }
+        
+        for (e, setStructs ) in setData {
+            for s in setStructs {
+                let newSet = addExerciseSet(rep: s.repetition, intensity: s.intensity, unit: s.unit, exerciseID: e.fbid!, workoutID: id) as! FirebaseExerciseSet
+                workout.exercises.append(newSet.id!)
+            }
+        }
+        
         do {
             if (try workoutsRef?.document(id).setData(from: workout)) != nil {
                 print("Successful serializing workout")
@@ -184,6 +201,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
     // MARK: - Firebase Controller Specific m=Methods
     func setupExerciseListener() {
 //        setupWorkoutListener()
+        exerciseSetRef = userRef?.document(currentUser!.uid).collection("exercisesSets")
         exercissRef = userRef?.document(currentUser!.uid).collection("exercises")
     }
     func setupWorkoutListener() {
@@ -194,6 +212,10 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
 //    func getWorkoutByID()
 //    func parseWorkoutSnapshot(snapshot: QuerySnapshot)
 //    func parseExerciseSnapshot(snapshot: QueryDocumentSnapshot)
+    
+    func getUserWorkouts() -> Dictionary<String, String> {
+        
+    }
     
 
 }

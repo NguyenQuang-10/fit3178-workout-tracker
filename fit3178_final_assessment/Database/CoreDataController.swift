@@ -11,6 +11,34 @@ import CoreData
 
 
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
+    func clearAllData() {
+        let fetchExerciseRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Exercise")
+        let deleteExerciseRequest = NSBatchDeleteRequest(fetchRequest: fetchExerciseRequest)
+        
+        let fetchExerciseSetRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ExerciseSet")
+        let deleteExerciseSetRequest = NSBatchDeleteRequest(fetchRequest: fetchExerciseSetRequest)
+        
+        let fetchWorkoutRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Workout")
+        let deleteWorkoutRequest = NSBatchDeleteRequest(fetchRequest: fetchWorkoutRequest)
+
+        do {
+            try persistentContainer.viewContext.execute(deleteExerciseSetRequest)
+            try persistentContainer.viewContext.save()
+            
+            try persistentContainer.viewContext.execute(deleteExerciseRequest)
+            try persistentContainer.viewContext.save()
+            
+            try persistentContainer.viewContext.execute(deleteWorkoutRequest)
+            try persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func syncWithOnline() {
+        
+    }
+    
     func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
         return ExerciseSet()
     }

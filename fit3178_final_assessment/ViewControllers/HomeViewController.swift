@@ -60,6 +60,8 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         
+        databaseController?.syncWithOnline()
+        
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (granted, error) in
             if !granted {

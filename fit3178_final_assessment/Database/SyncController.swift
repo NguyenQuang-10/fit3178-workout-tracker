@@ -8,6 +8,16 @@
 import Foundation
 
 class SyncController: NSObject, DatabaseProtocol {
+    func clearAllData() {
+        
+    }
+    
+    func syncWithOnline() {
+        coreDataController?.clearAllData()
+    }
+    
+    
+    
     func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
         return ExerciseSet()
     }
