@@ -39,6 +39,7 @@ class NotificationHandler: NSObject, DatabaseListener {
     }
     
     func scheduleNotification() {
+        print("date ran")
         let _: Dictionary = [
             0: "Monday",
             1: "Tuesday",
@@ -61,8 +62,10 @@ class NotificationHandler: NSObject, DatabaseListener {
             notificationContent.body = "See what workout(s) out you have today"
             
             var date = DateComponents()
-            date.weekday = i
-            date.hour = 7
+//            date.weekday = 4
+            date.hour = 14
+            date.minute = 42
+            print(date)
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
             
             let request = UNNotificationRequest(identifier: UUID().uuidString,

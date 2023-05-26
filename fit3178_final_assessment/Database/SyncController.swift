@@ -14,6 +14,50 @@ class SyncController: NSObject, DatabaseProtocol {
     
     func syncWithOnline() {
         coreDataController?.clearAllData()
+        
+        var currentUser = firebaseController?.currentUser
+        var userDocRef = firebaseController?.database.collection("user").document(currentUser!.uid)
+        var userWorkoutColRef = userDocRef!.collection("workouts")
+        var userExerciseRef = userDocRef!.collection("exercises")
+        var userExerciseSetRef = userDocRef!.collection("exerciseSets")
+        
+        userExerciseRef.getDocuments { (querySnapshot, error) in
+            for document in querySnapshot!.documents {
+                print(document.data())
+                let name = document.data()["name"] as! String
+                let desc = document.data()["desc"] as! String
+                let imageURL = document.data()["imageURL"] as! String
+                let _ = self.coreDataController!.addExercise(name: name, desc: desc, imageURL: imageURL, id: document.documentID)
+            }
+            
+        }
+        
+//        userWorkoutColRef.getDocuments { (querySnapshot, error) in
+//            for document in querySnapshot!.documents {
+//                let name = document.data()["name"]
+//                let exercises = document.data()["exercises"]
+//                let schedule = document.data()["schedule"]
+//                
+//                var setDataDict: Dictionary<Exercise, [ExerciseSetStruct]> = [:]
+//                var exerciseSetArray: [Any] = []
+//                for i in 0...exerciseSetArray.count {
+//                    var exercise = exerciseSetArray[i] as! String
+//                    userExerciseSetRef.document(exercise).getDocument { (doc, error) in
+//                        let exerciseID = document.data()["exercise"] as! String
+//                        let workoutID = document.data()["workout"] as! String
+//                        let rep = document.data()["repetition"] as! Int
+//                        let intensity = document.data()["intensity"] as! Int
+//                        let unit = document.data()["unit"] as! String
+//                        
+//                        let _ = self.coreDataController?.addExerciseSet(rep: rep, intensity: intensity, unit: unit, exerciseID: exerciseID, workoutID: workoutID)
+//                    }
+//                }
+//            }
+//            
+//            
+//            
+//            let _ = self.coreDataController?.addWorkout(name: <#T##String#>, schedule: <#T##[WeekDates]#>, setData: <#T##Dictionary<Exercise, [ExerciseSetStruct]>#>, id: <#T##String#>)
+//        }
     }
     
     

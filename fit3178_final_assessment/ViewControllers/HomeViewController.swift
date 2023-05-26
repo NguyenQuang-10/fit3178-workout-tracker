@@ -45,6 +45,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         databaseController?.addListener(listener: self)
+        databaseController?.syncWithOnline()
         
     }
      

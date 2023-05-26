@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         databaseController!.coreDataController = coreDataController
         databaseController!.firebaseController = firebaseController
         firebaseAuthController = firebaseController
+        notificationHandler.databaseController = coreDataController
+        coreDataController?.addListener(listener: notificationHandler)
         return true
     }
 
