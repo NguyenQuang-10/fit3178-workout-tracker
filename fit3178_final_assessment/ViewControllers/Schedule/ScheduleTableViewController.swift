@@ -21,15 +21,6 @@ class ScheduleTableViewController: UITableViewController, AddWorkoutDelegate {
         5: "Saturday",
         6: "Sunday"
     ]
-    let rowAtDate: Dictionary<WeekDates, Int> = [
-        .monday: 0,
-        .tuesday: 1,
-        .wednesday: 2,
-        .thursday: 3,
-        .friday: 4,
-        .saturday: 5,
-        .sunday: 6
-    ]
     
     @IBAction func saveSchedule(_ sender: Any) {
         workoutScheduleDelegate?.schedule = self.schedule
@@ -42,7 +33,7 @@ class ScheduleTableViewController: UITableViewController, AddWorkoutDelegate {
         self.tableView.allowsMultipleSelection = true
         schedule = workoutScheduleDelegate!.schedule
         for date in schedule {
-            selectedIndexPaths.insert(IndexPath(row: rowAtDate[date]!, section: 0))
+            selectedIndexPaths.insert(IndexPath(row: date.rawValue - 2, section: 0))
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -84,12 +75,12 @@ class ScheduleTableViewController: UITableViewController, AddWorkoutDelegate {
             selectedIndexPaths.remove(indexPath)
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
             print(schedule.count)
-            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row) })
+            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row + 2) })
             print(schedule.count)
         } else {
             selectedIndexPaths.insert(indexPath) //select
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            schedule.append(WeekDates(rawValue: indexPath.row)!)
+            schedule.append(WeekDates(rawValue: indexPath.row + 2)!)
         }
     
     }
@@ -98,11 +89,11 @@ class ScheduleTableViewController: UITableViewController, AddWorkoutDelegate {
         if selectedIndexPaths.contains(indexPath) {
             selectedIndexPaths.remove(indexPath)
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
-            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row) })
+            schedule.removeAll(where: { $0 == WeekDates(rawValue: indexPath.row + 2) })
         } else {
             selectedIndexPaths.insert(indexPath) //select
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            schedule.append(WeekDates(rawValue: indexPath.row)!)
+            schedule.append(WeekDates(rawValue: indexPath.row + 2)!)
         }
             
         

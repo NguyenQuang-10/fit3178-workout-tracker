@@ -17,13 +17,13 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     var willShowWorkout: Workout?
     
     let dateAtRow: Dictionary<Int, String> = [
-        0: "Monday",
-        1: "Tuesday",
-        2: "Wednesday",
-        3: "Thursday",
-        4: "Friday",
-        5: "Saturday",
-        6: "Sunday"
+        2: "Monday",
+        3: "Tuesday",
+        4: "Wednesday",
+        5: "Thursday",
+        6: "Friday",
+        7: "Saturday",
+        8: "Sunday"
     ]
     
     @IBOutlet weak var workoutTableView: UITableView!
