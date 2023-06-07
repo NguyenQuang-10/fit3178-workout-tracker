@@ -33,3 +33,18 @@ Other things to fix:
 
 
 
+FUCK FUCK FUCK THE TIMER DOESN'T WORK IF YOU PUT THE THING IN BACK GROUND
+- time stamp when app entered foreground 
+- when app re-emerge update the manager
+
+- implement a time skip function
++ invalidate current timer
++ calculate time diff app quit to re enter foreground
++ calculate how many exercise to skip
++ recalculate indexing for set and exercise
++ create new timer and continue
+
+schedule ahead of time for next set
+
+To do in order to finish our MVP: Voice note, store on CoreData
+THATS ITS

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class ActiveWorkoutManager {
     
@@ -65,7 +66,11 @@ class ActiveWorkoutManager {
             delegate?.updateMinute(min: minuteLeft!)
             
             // update set for delegate
-            delegate?.updateSet(setData: currentSets![setIndex!], num: setIndex! + 1, total: currentSets!.count)
+            let currSet = currentSets![setIndex!]
+            delegate?.updateSet(setData: currSet, num: setIndex! + 1, total: currentSets!.count)
+            let notiBody = String(describing: currSet.intensity) + " " + String(describing: currSet.unit)  + " for " + String(describing: currSet.repetition) + " reps"
+            scheduleNotification(title: "Next set for " + (currentExercise?.name)! + " for # minutes", body: notiBody)
+            
         } else if exerciseIndex! < exerciseArray.count - 1{
             exerciseIndex! += 1
             setIndex = 0
@@ -90,6 +95,18 @@ class ActiveWorkoutManager {
     func finishWorkout() {
         timer?.invalidate()
         delegate?.finishWorkout()
+    }
+    
+    func scheduleNotification(title: String, body: String) {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = title
+        notificationContent.body = body
+
+        
+        let newUuid = UUID().uuidString
+        let request = UNNotificationRequest(identifier: newUuid,
+                                            content: notificationContent, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     
