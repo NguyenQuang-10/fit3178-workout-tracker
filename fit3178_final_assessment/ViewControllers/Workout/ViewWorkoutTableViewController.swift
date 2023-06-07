@@ -131,5 +131,19 @@ class ViewWorkoutTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "startWorkoutSegue" {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let activeWorkoutManager = appDelegate?.activeWorkoutManager
+            
+            let destination = segue.destination as! ActiveWorkoutViewController
+            
+            activeWorkoutManager?.delegate = destination
+            activeWorkoutManager?.loadWorkoutData(workout: displayingWorkout!, exerciseSets: exerciseDict)
+            destination.manager = activeWorkoutManager
+            
+            
+        }
+    }
 }

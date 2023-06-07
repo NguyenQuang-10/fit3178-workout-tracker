@@ -5,6 +5,11 @@
     +> weekday component for date doesn't start with 0 (Monday is 2)
     +> Changed in WeekDates and NotificationHandler
 - Get the active exercise screen working - next 2 
+    - count down and changing set is now working
+    +> Need to work on allowing user to choose the interval to change set/workout
+        -> Change database structure
+    +> Set up notification
+    +> Set up finish workout screens
 - Implement editing existing workouts - currently working on
     +> Cant reuse create workout scence because that thing is hooked for creating not editing
     +> Create a new thang

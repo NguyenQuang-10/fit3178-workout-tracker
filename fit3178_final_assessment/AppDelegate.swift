@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coreDataController: CoreDataController?
     var firebaseController: FirebaseController? // remove after testing
     var firebaseAuthController: FirebaseAuthenticationDelegate?
+    
+    
     let notificationHandler: NotificationHandler = NotificationHandler()
+    var activeWorkoutManager: ActiveWorkoutManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firebaseAuthController = firebaseController
         notificationHandler.databaseController = coreDataController
         coreDataController?.addListener(listener: notificationHandler)
+        
+        
+        activeWorkoutManager = ActiveWorkoutManager()
         return true
     }
 
