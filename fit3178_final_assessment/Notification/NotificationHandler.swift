@@ -38,6 +38,8 @@ class NotificationHandler: NSObject, DatabaseListener {
         return dateFreq
     }
     
+    var notifcationUUIDforDate: Dictionary<Int, String> = [:]
+    
     func scheduleNotification() {
         print("date ran")
         // CHANGED FROM OLD, THIS IS THE CORRECT WEEKDAY TO INT
@@ -53,7 +55,7 @@ class NotificationHandler: NSObject, DatabaseListener {
         
 //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
-        var dateFreq: [Int] = getSchedule()
+        let dateFreq: [Int] = getSchedule()
         for i in 0...6 {
             if dateFreq[i] > 0 {
                 // Create a notification content object
@@ -64,13 +66,18 @@ class NotificationHandler: NSObject, DatabaseListener {
                 notificationContent.body = "See what workout(s) out you have today"
                 
                 var date = DateComponents()
-                date.hour = 18
-                date.minute = 42
+                date.hour = 19
+                date.minute = 17
                 date.weekday = i + 2 // weekdays start from 2 for Monday
                 print(date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                 
-                let request = UNNotificationRequest(identifier: UUID().uuidString,
+                if let uuid = notifcationUUIDforDate[i+2] {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [uuid])
+                }
+                let newUuid = UUID().uuidString
+                notifcationUUIDforDate[i+2] = newUuid
+                let request = UNNotificationRequest(identifier: newUuid,
                                                     content: notificationContent, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }

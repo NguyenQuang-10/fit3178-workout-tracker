@@ -53,6 +53,10 @@ class SyncController: NSObject, DatabaseProtocol {
                 
                 var setDataDict: Dictionary<Exercise, [ExerciseSetStruct]> = [:]
                 var callsLeft = exerciseSets.count
+                if exerciseSets.count == 0 {
+                    let _ = self.coreDataController?.addWorkout(name: name, schedule: weekDateSchedule, setData: [:], id: document.documentID)
+                    continue
+                }
                 for i in 0...exerciseSets.count - 1 {
                     var exerciseSet = exerciseSets[i]
                     print(exerciseSet)
