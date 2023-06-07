@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import CoreData
+import Firebase
+import FirebaseFirestoreSwift
 
 class SyncController: NSObject, DatabaseProtocol {
     func clearAllData() {
@@ -19,46 +22,79 @@ class SyncController: NSObject, DatabaseProtocol {
         var userDocRef = firebaseController?.database.collection("user").document(currentUser!.uid)
         var userWorkoutColRef = userDocRef!.collection("workouts")
         var userExerciseRef = userDocRef!.collection("exercises")
-        var userExerciseSetRef = userDocRef!.collection("exerciseSets")
+        var userExerciseSetRef = userDocRef!.collection("exercisesSets")
         
         userExerciseRef.getDocuments { (querySnapshot, error) in
             for document in querySnapshot!.documents {
-                print(document.data())
+                print(document.documentID)
                 let name = document.data()["name"] as! String
                 let desc = document.data()["desc"] as! String
                 let imageURL = document.data()["imageURL"] as! String
                 let _ = self.coreDataController!.addExercise(name: name, desc: desc, imageURL: imageURL, id: document.documentID)
             }
             
+            
+            self.setUpWorkout(userExerciseSetRef: userExerciseSetRef, userWorkoutColRef: userWorkoutColRef)
+            
         }
         
-//        userWorkoutColRef.getDocuments { (querySnapshot, error) in
-//            for document in querySnapshot!.documents {
-//                let name = document.data()["name"]
-//                let exercises = document.data()["exercises"]
-//                let schedule = document.data()["schedule"]
-//                
-//                var setDataDict: Dictionary<Exercise, [ExerciseSetStruct]> = [:]
-//                var exerciseSetArray: [Any] = []
-//                for i in 0...exerciseSetArray.count {
-//                    var exercise = exerciseSetArray[i] as! String
-//                    userExerciseSetRef.document(exercise).getDocument { (doc, error) in
-//                        let exerciseID = document.data()["exercise"] as! String
-//                        let workoutID = document.data()["workout"] as! String
-//                        let rep = document.data()["repetition"] as! Int
-//                        let intensity = document.data()["intensity"] as! Int
-//                        let unit = document.data()["unit"] as! String
-//                        
-//                        let _ = self.coreDataController?.addExerciseSet(rep: rep, intensity: intensity, unit: unit, exerciseID: exerciseID, workoutID: workoutID)
-//                    }
-//                }
-//            }
-//            
-//            
-//            
-//            let _ = self.coreDataController?.addWorkout(name: <#T##String#>, schedule: <#T##[WeekDates]#>, setData: <#T##Dictionary<Exercise, [ExerciseSetStruct]>#>, id: <#T##String#>)
-//        }
+        
     }
+    
+    func setUpWorkout(userExerciseSetRef: CollectionReference, userWorkoutColRef: CollectionReference) {
+        userWorkoutColRef.getDocuments { (querySnapshot, error) in
+            for document in querySnapshot!.documents {
+                let name = document.data()["name"] as! String
+                let exerciseSets = document.data()["exercises"] as! Array<String>
+                let schedule = document.data()["schedule"] as! Array<Int>
+                
+                var weekDateSchedule: [WeekDates] = []
+                schedule.map { weekDateSchedule.append(WeekDates(rawValue: $0)!) }
+                
+                var setDataDict: Dictionary<Exercise, [ExerciseSetStruct]> = [:]
+                var callsLeft = exerciseSets.count
+                for i in 0...exerciseSets.count - 1 {
+                    var exerciseSet = exerciseSets[i]
+                    print(exerciseSet)
+                    userExerciseSetRef.document(exerciseSet).getDocument { (setDoc, error) in
+                        let exerciseID = setDoc!.data()!["exercise"] as! String
+                        let workoutID = setDoc!.data()!["workout"] as! String
+                        let rep = setDoc!.data()!["repetition"] as! Int
+                        let intensity = setDoc!.data()!["intensity"] as! Int
+                        let unit = setDoc!.data()!["unit"] as! String
+                        
+                        let newSet = ExerciseSetStruct(repetition: rep, intensity: intensity, unit: unit)
+                        
+                        print("Exercise ID for this Set")
+                        print(exerciseID)
+                        var coreDataExercise: [Exercise] = []
+                        let predicate = NSPredicate(format: "fbid == %@", exerciseID)
+                        let fetchRequest = NSFetchRequest<Exercise>(entityName: "Exercise")
+                        fetchRequest.predicate = predicate
+                        do {
+                            try coreDataExercise = (self.coreDataController?.persistentContainer.viewContext.fetch(fetchRequest))!
+                            print(coreDataExercise[0])
+                            if setDataDict[coreDataExercise[0]] == nil {
+                                setDataDict[coreDataExercise[0]] = []
+                            }
+                            setDataDict[coreDataExercise[0]]!.append(newSet)
+                            print(setDataDict)
+                            
+                            callsLeft -= 1
+                            if callsLeft == 0 {
+                                let _ = self.coreDataController?.addWorkout(name: name, schedule: weekDateSchedule, setData: setDataDict, id: document.documentID)
+                            }
+                            
+                        } catch {
+                            print("Fetch Request failed")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
     
     
     

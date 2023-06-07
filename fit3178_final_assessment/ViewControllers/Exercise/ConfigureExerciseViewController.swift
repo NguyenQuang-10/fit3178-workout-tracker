@@ -59,7 +59,6 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     }
     
     func addExerciseToWorkout(exercise: Exercise) {
-        print("Im runinnnngg")
         let newBlankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "")
         delegate?.exercises[exercise] = []
         delegate?.exercises[exercise]?.append(newBlankSet)
@@ -89,7 +88,6 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addWorkoutSegue" {
-            print("Cheese")
             let destination = segue.destination as! AddExerciseTableViewController
             destination.delegate = self
         } else if segue.identifier == "editExerciseSegue" {

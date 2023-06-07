@@ -59,13 +59,13 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         
         super.init()
         
-        if authController.currentUser != nil{
-            do {
-              try authController.signOut()
-            } catch let signOutError as NSError {
-              print("Error signing out: %@", signOutError)
-            }
-        }
+//        if authController.currentUser != nil{
+//            do {
+//              try authController.signOut()
+//            } catch let signOutError as NSError {
+//              print("Error signing out: %@", signOutError)
+//            }
+//        }
         
 //        Task {
 //            do {

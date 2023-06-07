@@ -45,7 +45,6 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         databaseController?.addListener(listener: self)
-        databaseController?.syncWithOnline()
         
     }
      
@@ -131,8 +130,9 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWorkoutSegue" {
-            let destination = segue.destination as! ViewWorkoutTableViewController
-            destination.displayingWorkout = willShowWorkout
+            let destination = segue.destination as! UINavigationController
+            let target = destination.topViewController as! ViewWorkoutTableViewController
+            target.displayingWorkout = willShowWorkout
         }
     }
 
