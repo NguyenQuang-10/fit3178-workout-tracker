@@ -25,6 +25,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
         let fetchWorkoutRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Workout")
         let deleteWorkoutRequest = NSBatchDeleteRequest(fetchRequest: fetchWorkoutRequest)
+        
+        let fetchRecordingRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "WorkoutRecording")
+        let deleteRecordingRequest = NSBatchDeleteRequest(fetchRequest: fetchRecordingRequest)
+
 
         do {
             try persistentContainer.viewContext.execute(deleteExerciseSetRequest)
@@ -34,6 +38,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             try persistentContainer.viewContext.save()
             
             try persistentContainer.viewContext.execute(deleteWorkoutRequest)
+            try persistentContainer.viewContext.save()
+            
+            try persistentContainer.viewContext.execute(deleteRecordingRequest)
             try persistentContainer.viewContext.save()
         } catch let error as NSError {
             print(error)
