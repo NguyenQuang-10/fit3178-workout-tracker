@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
+// class that handles login in with Firebase
 protocol FirebaseAuthenticationDelegate {
     var authController: Auth {get set}
     func login(email: String, password: String) async throws

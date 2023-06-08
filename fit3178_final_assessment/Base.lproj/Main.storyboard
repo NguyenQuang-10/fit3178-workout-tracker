@@ -400,7 +400,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUC-za-HEI" userLabel="Next">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUC-za-HEI" userLabel="Next">
                                                     <rect key="frame" x="20" y="66" width="45" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -572,13 +572,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedule:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whw-Tj-Mu8">
-                                <rect key="frame" x="36" y="626" width="333" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iq9-Y9-1as"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -593,7 +586,6 @@
                     <connections>
                         <outlet property="createWorkout" destination="8O3-06-nH2" id="YZd-Zt-c8n"/>
                         <outlet property="menuTable" destination="XLA-1N-nfu" id="8Ax-rg-OEX"/>
-                        <outlet property="scheduleLabel" destination="Whw-Tj-Mu8" id="h7K-V9-2UF"/>
                         <outlet property="workoutName" destination="n37-tq-e5L" id="Xd4-sd-zgN"/>
                         <segue destination="i4r-Zs-53G" kind="show" identifier="workoutScheduleSegue" id="QgT-UE-aQO"/>
                         <segue destination="54E-gV-Lsb" kind="show" identifier="workoutExerciseSegue" id="2yC-5Z-oMN"/>

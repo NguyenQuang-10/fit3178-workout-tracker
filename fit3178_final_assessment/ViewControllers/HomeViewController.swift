@@ -108,14 +108,9 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutTableViewCell
 
         let workout = allWorkouts[indexPath.row]
-        print(workout.name)
         cell.title?.text = workout.name
-        cell.subtitle?.text = String(workout.schedule?.count ?? 0 )
         
-        for date in workout.schedule! {
-            cell.subtitle?.text! += dateAtRow[date]!
-            
-        }
+
         return cell
     }
     

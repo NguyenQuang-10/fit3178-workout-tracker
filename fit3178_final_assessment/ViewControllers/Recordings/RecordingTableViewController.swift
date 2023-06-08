@@ -8,10 +8,12 @@
 import UIKit
 import AVFoundation
 
+
+
 class RecordingTableViewController: UITableViewController {
     
-    var dataController: RecordingDataController?
-    var recordingDatas: [WorkoutRecording] = []
+    var dataController: RecordingDataController? // the database controller to fetch recording info from
+    var recordingDatas: [WorkoutRecording] = [] // the title and uuid for each audio recording
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +51,12 @@ class RecordingTableViewController: UITableViewController {
         return cell
     }
     
-    func getDocumentsDirectory() -> URL {
+    func getDocumentsDirectory() -> URL { // return the URL representing the directory of the document directory
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
+    // plays the audio corresponding to the row
     var audioPlayer: AVAudioPlayer?;
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let uuid = recordingDatas[indexPath.row].uuid!

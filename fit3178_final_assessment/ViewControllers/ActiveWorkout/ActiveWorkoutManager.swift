@@ -8,15 +8,18 @@
 import Foundation
 import UserNotifications
 
+// manages app behaviour when a workout is active
 class ActiveWorkoutManager {
     
-    var delegate: ActiveWorkoutDelegate?
-    var exerciseSets: Dictionary<Exercise, [ExerciseSet]>?
-    var workout: Workout?
-    var exerciseArray: [Exercise] = []
-    var active = false
-    var pendingNotiID: [String] = []
+    var delegate: ActiveWorkoutDelegate? // the view controller that displaying the content of the active workout
+    var exerciseSets: Dictionary<Exercise, [ExerciseSet]>? // the sets in the workout
+    var workout: Workout? // the current active workout
+    var exerciseArray: [Exercise] = [] // the exercises in the workout
+    var active = false // true if there is currently an active workout
+    var pendingNotiID: [String] = [] // stores all pending uuid of scheduled notification
     
+    
+    // load workout data to be display
     func loadWorkoutData(workout: Workout, exerciseSets: Dictionary<Exercise, [ExerciseSet]>){
         if active == true {
             timer?.invalidate()
@@ -31,8 +34,9 @@ class ActiveWorkoutManager {
         }
     }
     
-    var timer: Timer?
+    var timer: Timer? // used for timed callback
     
+    // initializes the workout
     func startWorkout() {
         if active == true {
             timer?.invalidate()
@@ -64,6 +68,7 @@ class ActiveWorkoutManager {
     var setIndex: Int?
     var exerciseIndex: Int?
     
+    // subroutine that runs to update the workout status
     @objc
     func workoutSubroutine() {
         if secondLeft! > 0 {
@@ -109,6 +114,7 @@ class ActiveWorkoutManager {
         
     }
     
+    // finishes the workout
     func finishWorkout() {
         active = false
         timer?.invalidate()
@@ -118,6 +124,7 @@ class ActiveWorkoutManager {
         delegate?.finishWorkout()
     }
     
+    // schedule the notification when set and exercises change
     func scheduleNotification() {
         var delay = 1
         for e in exerciseArray {

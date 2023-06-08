@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+// view controller that display the status of the active workout
 protocol ActiveWorkoutDelegate {
     
     func updateSecond(sec: Int)

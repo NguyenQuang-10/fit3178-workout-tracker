@@ -5,9 +5,12 @@
 //  Created by Nhat Nguyen on 25/5/2023.
 //
 
+
 import Foundation
 import UserNotifications
 
+// Responsible for handling the scheduling of the notification for workout reminder
+// Depending on the schedule of a workout, schedule a notification at 8AM for each date of the week that workout is scheduled for
 class NotificationHandler: NSObject, DatabaseListener {
     var listenerType: ListenerType = .workout
     var workouts: [Workout] = []
@@ -27,6 +30,7 @@ class NotificationHandler: NSObject, DatabaseListener {
         return
     }
     
+    // return the the number of workout for each week date i.e at index i is the number of workout happening on date i + 2
     func getSchedule() -> [Int] {
         var dateFreq: [Int] = [0,0,0,0,0,0,0]
         for workout in workouts {
@@ -38,6 +42,7 @@ class NotificationHandler: NSObject, DatabaseListener {
         return dateFreq
     }
     
+    // store the uuid for notification of each weekdate
     var notifcationUUIDforDate: Dictionary<Int, String> = [:]
     
     func scheduleNotification() {
@@ -55,6 +60,7 @@ class NotificationHandler: NSObject, DatabaseListener {
         
 //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
+        // schedule the notification
         let dateFreq: [Int] = getSchedule()
         for i in 0...6 {
             if dateFreq[i] > 0 {
@@ -66,8 +72,8 @@ class NotificationHandler: NSObject, DatabaseListener {
                 notificationContent.body = "See what workout(s) out you have today"
                 
                 var date = DateComponents()
-                date.hour = 19
-                date.minute = 17
+                date.hour = 8
+                date.minute = 0
                 date.weekday = i + 2 // weekdays start from 2 for Monday
                 print(date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)

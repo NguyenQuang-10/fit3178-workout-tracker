@@ -170,7 +170,6 @@
 		0F2D92502A30565D00325965 /* ActiveWorkout */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB268B2A3082E5006CEFAE /* Notification */,
 				0F2D92512A3058E900325965 /* ActiveWorkoutManager.swift */,
 				0F2D92532A30590400325965 /* ActiveWorkoutViewController.swift */,
 				0FAB26892A305D50006CEFAE /* ActiveWorkoutDelegate.swift */,
@@ -332,13 +331,6 @@
 				0F85D7A92A14BCA100E6309C /* DecodedAPIExercise.swift */,
 			);
 			path = Exercise;
-			sourceTree = "<group>";
-		};
-		0FAB268B2A3082E5006CEFAE /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notification;
 			sourceTree = "<group>";
 		};
 		0FC127BD2A1EFCEB006E12ED /* Notification */ = {

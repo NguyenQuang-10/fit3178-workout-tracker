@@ -23,7 +23,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         8: "Sunday"
     ]
     
-    @IBOutlet weak var scheduleLabel: UILabel!
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -82,10 +81,6 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        scheduleLabel.text = "Schedule: "
-        for date in schedule {
-            scheduleLabel.text! += dateAtRow[date.rawValue]!
-        }
     }
     
     override func viewDidLoad() {

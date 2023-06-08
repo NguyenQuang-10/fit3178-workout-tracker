@@ -10,6 +10,7 @@ import AVFoundation
 
 class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     
+    
     @IBOutlet weak var recordButtonOutler: UIButton!
     var audioRecorder: AVAudioRecorder?
     var recordingSession: AVAudioSession?
@@ -17,9 +18,11 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     var dataController: RecordingDataController?
     var workoutName: String?
 
+    // NOTE: the AVFoundation parts in this class are modified from the Hacking with Swift article from Abouts
     @IBAction func recordButton(_ sender: Any) {
-        recordingSession = AVAudioSession.sharedInstance()
+        recordingSession = AVAudioSession.sharedInstance() // get the recording Session
 
+        // initializes the recording session and start recording
         do {
             try recordingSession!.setCategory(.playAndRecord, mode: .default)
             try recordingSession!.setActive(true)
@@ -42,16 +45,18 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        // recording was interrupted
         if !flag {
             finishRecording(success: false)
         }
     }
     
-    func getDocumentsDirectory() -> URL {
+    func getDocumentsDirectory() -> URL { // get document directory
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
+    // save info about the recording to coredata and save the recording it self to a new file in the document directory
     func startRecording(uuid: String) {
         let date = Date()
         let calendar = Calendar.current
@@ -80,6 +85,7 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    // handles when recording stops
     func finishRecording(success: Bool) {
         audioRecorder!.stop()
         audioRecorder = nil
@@ -95,6 +101,7 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the data controller responsible to saving recording information
         var appDelegate = UIApplication.shared.delegate as! AppDelegate
         dataController = appDelegate.coreDataController
 
