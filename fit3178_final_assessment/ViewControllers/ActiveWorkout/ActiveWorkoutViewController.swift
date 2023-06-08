@@ -9,7 +9,7 @@ import UIKit
 
 class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     func finishWorkout() {
-        
+        performSegue(withIdentifier: "finishedWorkoutSegue", sender: self)
     }
     
     
@@ -17,6 +17,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     
     
     var manager: ActiveWorkoutManager?
+    var workoutName: String?
     
     
     @IBOutlet weak var reps: UILabel!
@@ -27,6 +28,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     @IBOutlet weak var numOfSets: UILabel!
     @IBOutlet weak var intensity: UILabel!
     @IBOutlet weak var label: UILabel!
+    
     
     
     func updateSecond(sec: Int) {
@@ -68,8 +70,10 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     @IBOutlet weak var exerciseDesc: UILabel!
     
     
+    @IBOutlet weak var workoutNameLable: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        workoutNameLable.text = workoutName
         manager?.startWorkout()
         // Do any additional setup after loading the view.
     }
@@ -78,6 +82,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     @IBAction func endWorkoutButton(_ sender: Any) {
         manager?.finishWorkout()
     }
+    
     /*
     // MARK: - Navigation
 

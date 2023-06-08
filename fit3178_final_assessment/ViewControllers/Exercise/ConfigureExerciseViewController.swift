@@ -14,7 +14,11 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     }
     
     func updateSetsForExercise(exercise: Exercise, exericseSets: [ExerciseSetStruct]) {
+        let exerciseOrder = delegate?.exercises[exercise]![0].order
         delegate?.exercises[exercise] = exericseSets
+        for i in 0...(delegate?.exercises[exercise]!.count)! - 1 {
+            delegate?.exercises[exercise]?[i].order = exerciseOrder!
+        }
     }
     
     func getSetsForExercise(exercise: Exercise) -> [ExerciseSetStruct] {
@@ -46,7 +50,7 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = exerciseKeys![indexPath.row].name
+            content.text = exerciseKeys![indexPath.row]!.name
             cell.contentConfiguration = content
             return cell
         } else {
@@ -59,10 +63,15 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     }
     
     func addExerciseToWorkout(exercise: Exercise) {
-        let newBlankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "")
+        let newBlankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "", order: (delegate?.exercises.count)!, duration: 0, setOrder: 0)
         delegate?.exercises[exercise] = []
         delegate?.exercises[exercise]?.append(newBlankSet)
         exerciseKeys = Array((delegate?.exercises.keys)!)
+        exerciseKeys = exerciseKeys?.sorted { (e1, e2) -> Bool in
+            return (delegate?.exercises[e1!]![0].order)! < (delegate?.exercises[e2!]![0].order)!
+        }
+        
+
         tableView.reloadData()
     }
     
@@ -70,12 +79,15 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     
     var delegate: ConfigureExerciseDelegate?
     var editingExercise: Exercise?
-    var exerciseKeys: [Exercise]?
+    var exerciseKeys: [Exercise?]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         exerciseKeys = Array((delegate?.exercises.keys)!)
+        exerciseKeys = exerciseKeys?.sorted { (e1, e2) -> Bool in
+            return (delegate?.exercises[e1!]![0].order)! < (delegate?.exercises[e2!]![0].order)!
+        }
         
         tableView.delegate = self
         tableView.dataSource = self

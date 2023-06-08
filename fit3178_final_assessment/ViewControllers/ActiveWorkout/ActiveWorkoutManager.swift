@@ -14,28 +14,45 @@ class ActiveWorkoutManager {
     var exerciseSets: Dictionary<Exercise, [ExerciseSet]>?
     var workout: Workout?
     var exerciseArray: [Exercise] = []
+    var active = false
+    var pendingNotiID: [String] = []
     
     func loadWorkoutData(workout: Workout, exerciseSets: Dictionary<Exercise, [ExerciseSet]>){
+        if active == true {
+            timer?.invalidate()
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: pendingNotiID)
+            pendingNotiID = []
+        }
+        
         self.exerciseSets = exerciseSets
         self.workout = workout
-        exerciseArray = Array(exerciseSets.keys)
+        exerciseArray = Array(exerciseSets.keys).sorted {(e1, e2) -> Bool in
+            return exerciseSets[e1]![0].order < exerciseSets[e2]![0].order
+        }
     }
     
     var timer: Timer?
     
     func startWorkout() {
+        if active == true {
+            timer?.invalidate()
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: pendingNotiID)
+            pendingNotiID = []
+        }
+        active = true
         exerciseIndex = 0
         currentExercise = exerciseArray[exerciseIndex!]
         
         setIndex = 0
         currentSets = exerciseSets![exerciseArray[exerciseIndex!]]
-        minuteLeft = 2 // replace with set time after implementing
+        minuteLeft = Int(currentSets![setIndex!].duration)
         delegate?.updateMinute(min: minuteLeft!)
         secondLeft = 0
         delegate?.updateSecond(sec: secondLeft!)
         delegate?.updateSet(setData: currentSets![setIndex!], num: setIndex! + 1, total: currentSets!.count)
         delegate?.updateExercise(exercise: currentExercise!)
         
+        scheduleNotification()
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(workoutSubroutine), userInfo: nil, repeats: true)
     }
@@ -60,7 +77,7 @@ class ActiveWorkoutManager {
         } else if setIndex! < currentSets!.count - 1 {
             setIndex! += 1
             // reset time for new set
-            minuteLeft = 2
+            minuteLeft = Int(currentSets![setIndex!].duration)
             delegate?.updateSecond(sec: secondLeft!)
             secondLeft = 0
             delegate?.updateMinute(min: minuteLeft!)
@@ -68,8 +85,6 @@ class ActiveWorkoutManager {
             // update set for delegate
             let currSet = currentSets![setIndex!]
             delegate?.updateSet(setData: currSet, num: setIndex! + 1, total: currentSets!.count)
-            let notiBody = String(describing: currSet.intensity) + " " + String(describing: currSet.unit)  + " for " + String(describing: currSet.repetition) + " reps"
-            scheduleNotification(title: "Next set for " + (currentExercise?.name)! + " for # minutes", body: notiBody)
             
         } else if exerciseIndex! < exerciseArray.count - 1{
             exerciseIndex! += 1
@@ -80,34 +95,66 @@ class ActiveWorkoutManager {
             delegate?.updateExercise(exercise: currentExercise!)
             delegate?.updateSet(setData: currentSets![setIndex!], num: setIndex! + 1, total: currentSets!.count)
             
-            minuteLeft = 2
+            minuteLeft = Int(currentSets![setIndex!].duration)
             delegate?.updateSecond(sec: secondLeft!)
             secondLeft = 0
             delegate?.updateMinute(min: minuteLeft!)
             
         } else {
-            timer?.invalidate()
-            print("Finished workout")
+            if active == true {
+                print("Finished workout")
+                finishWorkout()
+            }
         }
         
     }
     
     func finishWorkout() {
+        active = false
+        timer?.invalidate()
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: pendingNotiID)
+        pendingNotiID = []
         timer?.invalidate()
         delegate?.finishWorkout()
     }
     
-    func scheduleNotification(title: String, body: String) {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = title
-        notificationContent.body = body
-
-        
-        let newUuid = UUID().uuidString
-        let request = UNNotificationRequest(identifier: newUuid,
-                                            content: notificationContent, trigger: nil)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    func scheduleNotification() {
+        var delay = 1
+        for e in exerciseArray {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(delay), repeats: false)
+            
+            var notiContent = UNMutableNotificationContent()
+            notiContent.title = "Next exercise: " + e.name!
+            notiContent.body = String(exerciseSets![e]!.count) + " sets"
+            
+            let newExNotiUUID = UUID().uuidString
+            let req = UNNotificationRequest(identifier: newExNotiUUID, content: notiContent, trigger: trigger)
+            UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+            pendingNotiID.append(newExNotiUUID)
+            
+            for s in exerciseSets![e]! {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(delay), repeats: false)
+                
+                var notiContent = UNMutableNotificationContent()
+                notiContent.title = "Next set for " + e.name!
+                notiContent.body = String(s.repetition) + " reps of " + String(s.intensity) + " " + String(s.unit!) + " for " + String(s.duration) + " minute(s)"
+                
+                let newSetNotiUUID = UUID().uuidString
+                let req = UNNotificationRequest(identifier: newSetNotiUUID, content: notiContent, trigger: trigger)
+                UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+                pendingNotiID.append(newSetNotiUUID)
+                
+                delay += Int(s.duration) * 60
+            }
+        }
     }
     
+    func timeskip(secondPassed: Int) {
+        timer?.invalidate()
+        for _ in 0...secondPassed {
+            workoutSubroutine()
+        }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(workoutSubroutine), userInfo: nil, repeats: true)
+    }
     
 }

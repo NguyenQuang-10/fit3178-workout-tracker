@@ -32,7 +32,7 @@ protocol DatabaseProtocol: AnyObject {
     func addExercise(name: String, desc: String, imageURL: String, id: String) -> AnyObject
     func deleteExercise(exercise: Exercise)
     func addWorkout(name: String, schedule: [WeekDates], setData: Dictionary<Exercise, [ExerciseSetStruct]>, id: String) -> AnyObject
-    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject
+    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject
     
     func clearAllData()
     func syncWithOnline()

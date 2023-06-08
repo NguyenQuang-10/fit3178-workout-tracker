@@ -11,6 +11,10 @@ import CoreData
 
 
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
+    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject {
+        return FirebaseExerciseSet()
+    }
+    
     func clearAllData() {
         let fetchExerciseRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Exercise")
         let deleteExerciseRequest = NSBatchDeleteRequest(fetchRequest: fetchExerciseRequest)
@@ -38,10 +42,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     func syncWithOnline() {
         
     }
-    
-    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
-        return ExerciseSet()
-    }
+
     
     
     
@@ -87,6 +88,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
                 exerciseSet.repetition = Int16(s.repetition)
                 exerciseSet.intensity = Int16(s.intensity)
                 exerciseSet.unit = s.unit
+                exerciseSet.order = Int16(s.order)
+                exerciseSet.duration = Int16(s.duration)
+                exerciseSet.setOrder = Int16(s.setOrder)
                 workout.addToExercises(exerciseSet)
             }
         }
@@ -138,7 +142,6 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     func addExerciseSetToWorkout(exercise: Exercise, workout: Workout, repetition: Int, intensity: Int, unit: String) {
-        let exerciseSet = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: persistentContainer.viewContext) as! Exercise
     }
     
     func fetchAllExercises() -> [Exercise] {

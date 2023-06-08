@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var lastTimeExit: Date?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -42,12 +43,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        if let last = lastTimeExit {
+//            print("Scence entered")
+            let timePassed = Date.now.timeIntervalSince(lastTimeExit!)
+//            print(timePassed)
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            if (appDelegate?.activeWorkoutManager?.active)! == true {
+                appDelegate?.activeWorkoutManager?.timeskip(secondPassed: Int(timePassed))
+            }
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        
+        lastTimeExit = Date()
+//        print("Scene exited")
     }
 
 

@@ -11,6 +11,7 @@
 		0F2D92522A3058E900325965 /* ActiveWorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D92512A3058E900325965 /* ActiveWorkoutManager.swift */; };
 		0F2D92542A30590400325965 /* ActiveWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D92532A30590400325965 /* ActiveWorkoutViewController.swift */; };
 		0F2FC6052A0CAA28005B4EE8 /* AddExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */; };
+		0F32A2D72A31AF05008275AC /* FinishedWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F32A2D62A31AF05008275AC /* FinishedWorkoutViewController.swift */; };
 		0F34B1DF2A0DC43D001BBCF4 /* EditSetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34B1DE2A0DC43D001BBCF4 /* EditSetDelegate.swift */; };
 		0F34B1E32A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34B1E22A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift */; };
 		0F37016A2A048F7300B73B95 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */; };
@@ -80,6 +81,7 @@
 		0F2D92512A3058E900325965 /* ActiveWorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutManager.swift; sourceTree = "<group>"; };
 		0F2D92532A30590400325965 /* ActiveWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutViewController.swift; sourceTree = "<group>"; };
 		0F2FC6042A0CAA28005B4EE8 /* AddExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseDelegate.swift; sourceTree = "<group>"; };
+		0F32A2D62A31AF05008275AC /* FinishedWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedWorkoutViewController.swift; sourceTree = "<group>"; };
 		0F34B1DE2A0DC43D001BBCF4 /* EditSetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSetDelegate.swift; sourceTree = "<group>"; };
 		0F34B1E22A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWorkoutTableViewController.swift; sourceTree = "<group>"; };
 		0F3701692A048F7300B73B95 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				0F2D92512A3058E900325965 /* ActiveWorkoutManager.swift */,
 				0F2D92532A30590400325965 /* ActiveWorkoutViewController.swift */,
 				0FAB26892A305D50006CEFAE /* ActiveWorkoutDelegate.swift */,
+				0F32A2D62A31AF05008275AC /* FinishedWorkoutViewController.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F32A2D72A31AF05008275AC /* FinishedWorkoutViewController.swift in Sources */,
 				0F8821F22A0CD80300DD94C0 /* SetTableViewCell.swift in Sources */,
 				0F2D92542A30590400325965 /* ActiveWorkoutViewController.swift in Sources */,
 				0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */,

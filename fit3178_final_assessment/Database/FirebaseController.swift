@@ -18,13 +18,16 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         
     }
     
-    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
+    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject {
         var exerciseSet = FirebaseExerciseSet()
         exerciseSet.repetition = Int16(rep)
         exerciseSet.intensity = Int16(intensity)
         exerciseSet.unit = unit
         exerciseSet.exercise = exerciseID
         exerciseSet.workout = workoutID
+        exerciseSet.order = Int16(order)
+        exerciseSet.duration = Int16(duration)
+        exerciseSet.setOrder = Int16(setOrder)
 
 
         do {
@@ -175,7 +178,7 @@ class FirebaseController: NSObject, DatabaseProtocol, FirebaseAuthenticationDele
         
         for (e, setStructs ) in setData {
             for s in setStructs {
-                let newSet = addExerciseSet(rep: s.repetition, intensity: s.intensity, unit: s.unit, exerciseID: e.fbid!, workoutID: id) as! FirebaseExerciseSet
+                let newSet = addExerciseSet(rep: s.repetition, intensity: s.intensity, unit: s.unit, exerciseID: e.fbid!, workoutID: id, order: s.order, duration: s.duration, setOrder: s.setOrder) as! FirebaseExerciseSet
                 workout.exercises.append(newSet.id!)
             }
         }

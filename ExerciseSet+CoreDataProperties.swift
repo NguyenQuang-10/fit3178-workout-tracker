@@ -18,6 +18,9 @@ extension ExerciseSet {
 
     @NSManaged public var intensity: Int16
     @NSManaged public var repetition: Int16
+    @NSManaged public var order: Int16
+    @NSManaged public var setOrder: Int16
+    @NSManaged public var duration: Int16
     @NSManaged public var unit: String?
     @NSManaged public var exercise: Exercise?
     @NSManaged public var workout: Workout?

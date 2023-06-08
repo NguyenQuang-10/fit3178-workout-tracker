@@ -8,8 +8,11 @@
         <relationship name="workout" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExerciseSet" inverseName="exercise" inverseEntity="ExerciseSet"/>
     </entity>
     <entity name="ExerciseSet" representedClassName="ExerciseSet" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="intensity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repetition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="setOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="unit" optional="YES" attributeType="String"/>
         <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout"/>

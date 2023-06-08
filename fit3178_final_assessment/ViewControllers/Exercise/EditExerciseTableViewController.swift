@@ -19,7 +19,7 @@ class EditExerciseTableViewController: UITableViewController, editSetDelegate {
     }
     
     @IBAction func addNewSet(_ sender: Any) {
-        var blankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "")
+        var blankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "", order: 0, duration: 0, setOrder: sets.count)
         sets.append(blankSet)
         tableView.reloadData()
     }
@@ -32,6 +32,10 @@ class EditExerciseTableViewController: UITableViewController, editSetDelegate {
         super.viewDidLoad()
         
         sets = (delegate?.getSetsForExercise(exercise: editingExercise!))!
+        sets = sets.sorted { (s1, s2) -> Bool in
+            s1.setOrder < s2.setOrder
+            
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,6 +70,7 @@ class EditExerciseTableViewController: UITableViewController, editSetDelegate {
             cell.repTextbox?.text = "\(sets[indexPath.row].repetition)"
             cell.intensityTextbox?.text = "\(sets[indexPath.row].intensity)"
             cell.unitTextbox?.text = sets[indexPath.row].unit
+            cell.duration?.text = String(sets[indexPath.row].duration)
             cell.indexPath = indexPath
             cell.displayingSet = sets[indexPath.row]
             

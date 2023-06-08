@@ -11,4 +11,7 @@ struct ExerciseSetStruct {
     var repetition: Int
     var intensity: Int
     var unit: String
+    var order: Int
+    var duration: Int
+    var setOrder: Int
 }

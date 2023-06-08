@@ -39,6 +39,16 @@ class ViewWorkoutTableViewController: UITableViewController {
             // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
             // self.navigationItem.rightBarButtonItem = self.editButtonItem
         }
+        
+        exerciseList = exerciseList.sorted { (e1, e2) -> Bool in
+            return exerciseDict[e1]![0].order < exerciseDict[e2]![0].order
+        }
+        
+        for e in exerciseList {
+            exerciseDict[e] = exerciseDict[e]?.sorted{ (s1,s2) -> Bool in 
+                return s1.setOrder < s2.setOrder
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -139,6 +149,7 @@ class ViewWorkoutTableViewController: UITableViewController {
             
             let destination = segue.destination as! ActiveWorkoutViewController
             
+            destination.workoutName = displayingWorkout?.name
             activeWorkoutManager?.delegate = destination
             activeWorkoutManager?.loadWorkoutData(workout: displayingWorkout!, exerciseSets: exerciseDict)
             destination.manager = activeWorkoutManager

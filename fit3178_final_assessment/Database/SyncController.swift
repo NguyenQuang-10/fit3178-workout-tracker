@@ -11,6 +11,10 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class SyncController: NSObject, DatabaseProtocol {
+    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject {
+        return ExerciseSet()
+    }
+    
     func clearAllData() {
         
     }
@@ -66,8 +70,11 @@ class SyncController: NSObject, DatabaseProtocol {
                         let rep = setDoc!.data()!["repetition"] as! Int
                         let intensity = setDoc!.data()!["intensity"] as! Int
                         let unit = setDoc!.data()!["unit"] as! String
+                        let order = setDoc!.data()!["order"] as! Int
+                        let duration = setDoc!.data()!["duration"] as! Int
+                        let setOrder = setDoc!.data()!["setOrder"] as! Int
                         
-                        let newSet = ExerciseSetStruct(repetition: rep, intensity: intensity, unit: unit)
+                        let newSet = ExerciseSetStruct(repetition: rep, intensity: intensity, unit: unit, order: order, duration: duration, setOrder: setOrder)
                         
                         print("Exercise ID for this Set")
                         print(exerciseID)
@@ -99,12 +106,7 @@ class SyncController: NSObject, DatabaseProtocol {
     }
     
 
-    
-    
-    
-    func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String) -> AnyObject {
-        return ExerciseSet()
-    }
+
     
     
     var coreDataController: CoreDataController?

@@ -16,6 +16,9 @@ class FirebaseExerciseSet: NSObject, Codable {
     var unit: String?
     var exercise: String?
     var workout: String?
+    var duration: Int16?
+    var order: Int16?
+    var setOrder: Int16?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,5 +27,8 @@ class FirebaseExerciseSet: NSObject, Codable {
         case unit
         case exercise
         case workout
+        case duration
+        case order
+        case setOrder
     }
 }

@@ -12,6 +12,7 @@ class SetTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var intensityTextbox: UITextField!
     
     
+    @IBOutlet weak var duration: UITextField!
     @IBOutlet weak var unitTextbox: UITextField!
     
     
@@ -29,6 +30,7 @@ class SetTableViewCell: UITableViewCell, UITextFieldDelegate {
         intensityTextbox?.delegate = self
         unitTextbox?.delegate = self
         repTextbox?.delegate = self
+        duration?.delegate = self
     }
 
     
@@ -41,6 +43,9 @@ class SetTableViewCell: UITableViewCell, UITextFieldDelegate {
             delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
         } else if textField == unitTextbox {
             displayingSet?.unit = textField.text!
+            delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
+        }  else if textField == duration {
+            displayingSet?.duration = Int(textField.text!)!
             delegate?.updateSetAtRow(indexPath: indexPath!, updatedSet: displayingSet!)
         }
     }
