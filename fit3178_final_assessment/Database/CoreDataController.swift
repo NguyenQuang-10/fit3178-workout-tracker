@@ -10,7 +10,7 @@ import CoreData
 
 
 
-class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
+class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate, RecordingDataController {
     func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject {
         return FirebaseExerciseSet()
     }
@@ -48,6 +48,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     
     var allExercisesFetchedResultsController: NSFetchedResultsController<Exercise>?
     var allWorkoutsFetchedResultsController: NSFetchedResultsController<Workout>?
+    var allRecordingFetchedResultsController: NSFetchedResultsController<WorkoutRecording>?
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if controller == allExercisesFetchedResultsController {
@@ -211,6 +212,36 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
 //        let _ = addWorkout(name: "Back Day", schedule: [])
 //        cleanup()
+    }
+    
+    func addNewAudioRecord(title: String, uuid: String) {
+        let rec = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: persistentContainer.viewContext) as! WorkoutRecording
+        rec.uuid = uuid
+        rec.title = title
+    }
+    
+    func getAllRecordingInfo() -> [WorkoutRecording]{
+        if allRecordingFetchedResultsController == nil {
+            let request: NSFetchRequest<WorkoutRecording> = WorkoutRecording.fetchRequest()
+            let nameSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+            request.sortDescriptors = [nameSortDescriptor]
+            
+            allRecordingFetchedResultsController = NSFetchedResultsController<WorkoutRecording>(fetchRequest: request, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            
+            allRecordingFetchedResultsController?.delegate = self
+        }
+        
+        do {
+            try allRecordingFetchedResultsController?.performFetch()
+        } catch {
+            print("Fetch request failed: \(error)")
+        }
+        
+        if let recordings = allRecordingFetchedResultsController?.fetchedObjects {
+            return recordings
+        }
+        
+        return [WorkoutRecording]()
     }
     
 

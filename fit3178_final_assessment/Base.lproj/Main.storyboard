@@ -202,6 +202,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Leave a voice note"/>
+                                <connections>
+                                    <action selector="recordButton:" destination="uVB-Hj-dJd" eventType="touchUpInside" id="cZf-Ek-TDj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8n-oG-YPS">
                                 <rect key="frame" x="16" y="714" width="361" height="35"/>
@@ -230,10 +233,75 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="S6x-uU-8I2"/>
+                    <connections>
+                        <outlet property="recordButtonOutler" destination="vB4-TP-Dgc" id="e3C-9g-DX0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFJ-ym-0Je" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2712.2137404580153" y="1592.9577464788733"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wkg-7t-QGF">
+            <objects>
+                <viewController id="ZxV-1v-M52" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X8a-dZ-ZAO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jk9-De-bPh">
+                                <rect key="frame" x="16" y="59" width="361" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="See recordings"/>
+                                <connections>
+                                    <segue destination="SRC-OH-PfU" kind="show" id="npg-MO-aFj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdb-Fz-FBv">
+                                <rect key="frame" x="16" y="102" width="361" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Abouts"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CxD-IB-KSb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ipq-HQ-k1f"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cw3-2Z-qRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813" y="-727"/>
+        </scene>
+        <!--Recording Table View Controller-->
+        <scene sceneID="Q59-Hj-KlF">
+            <objects>
+                <tableViewController id="SRC-OH-PfU" customClass="RecordingTableViewController" customModule="fit3178_final_assessment" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="d8h-Ej-lue">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Nxx-1h-u69">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nxx-1h-u69" id="Vvj-Ey-4K1">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SRC-OH-PfU" id="mfz-kR-xvR"/>
+                            <outlet property="delegate" destination="SRC-OH-PfU" id="HcR-6j-uWu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="pFI-gU-mkh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kni-m7-BPo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2726" y="-727"/>
         </scene>
         <!--Username's Workouts-->
         <scene sceneID="tne-QT-ifu">
@@ -301,6 +369,9 @@
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="person.circle" catalog="system" symbolScale="large"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="ZxV-1v-M52" kind="show" id="gp5-Hz-iNj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-QN-XxM">
                                 <rect key="frame" x="351" y="59" width="26" height="35"/>

@@ -32,6 +32,10 @@
 		0F8821EE2A0CCCB400DD94C0 /* EditExerciseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */; };
 		0F8821F02A0CD06800DD94C0 /* ExerciseSetStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */; };
 		0F8821F22A0CD80300DD94C0 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */; };
+		0F8FCDAF2A31DD9400FCA91C /* WorkoutRecording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FCDAD2A31DD9400FCA91C /* WorkoutRecording+CoreDataClass.swift */; };
+		0F8FCDB02A31DD9400FCA91C /* WorkoutRecording+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FCDAE2A31DD9400FCA91C /* WorkoutRecording+CoreDataProperties.swift */; };
+		0F8FCDB52A31E00700FCA91C /* RecordingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FCDB42A31E00700FCA91C /* RecordingTableViewController.swift */; };
+		0F8FCDB72A31E02C00FCA91C /* RecordingDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8FCDB62A31E02C00FCA91C /* RecordingDataController.swift */; };
 		0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C60472A0B5AD10083B700 /* FirebaseController.swift */; };
 		0F9C604B2A0B5E7E0083B700 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604A2A0B5E7E0083B700 /* FirebaseAuth */; };
 		0F9C604D2A0B5E7E0083B700 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0F9C604C2A0B5E7E0083B700 /* FirebaseFirestore */; };
@@ -107,6 +111,10 @@
 		0F8821ED2A0CCCB400DD94C0 /* EditExerciseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseDelegate.swift; sourceTree = "<group>"; };
 		0F8821EF2A0CD06800DD94C0 /* ExerciseSetStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetStruct.swift; sourceTree = "<group>"; };
 		0F8821F12A0CD80300DD94C0 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
+		0F8FCDAD2A31DD9400FCA91C /* WorkoutRecording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutRecording+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0F8FCDAE2A31DD9400FCA91C /* WorkoutRecording+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutRecording+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		0F8FCDB42A31E00700FCA91C /* RecordingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTableViewController.swift; sourceTree = "<group>"; };
+		0F8FCDB62A31E02C00FCA91C /* RecordingDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataController.swift; sourceTree = "<group>"; };
 		0F9C60472A0B5AD10083B700 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		0F9C60502A0B5F0F0083B700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F9C60522A0B613E0083B700 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -247,6 +255,15 @@
 			path = fit3178_final_assessment;
 			sourceTree = "<group>";
 		};
+		0F8FCDB12A31DEA000FCA91C /* Recordings */ = {
+			isa = PBXGroup;
+			children = (
+				0F8FCDB42A31E00700FCA91C /* RecordingTableViewController.swift */,
+				0F8FCDB62A31E02C00FCA91C /* RecordingDataController.swift */,
+			);
+			path = Recordings;
+			sourceTree = "<group>";
+		};
 		0F9C60462A0B593D0083B700 /* FirebaseModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +277,8 @@
 		0FA192482A032BE8006EEB79 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				0F8FCDAD2A31DD9400FCA91C /* WorkoutRecording+CoreDataClass.swift */,
+				0F8FCDAE2A31DD9400FCA91C /* WorkoutRecording+CoreDataProperties.swift */,
 				0FC127C22A1F16B0006E12ED /* Workout+CoreDataClass.swift */,
 				0FC127C32A1F16B0006E12ED /* Workout+CoreDataProperties.swift */,
 				0FC127C42A1F16B0006E12ED /* ExerciseSet+CoreDataClass.swift */,
@@ -287,6 +306,7 @@
 		0FA1925B2A034308006EEB79 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F8FCDB12A31DEA000FCA91C /* Recordings */,
 				0F2D92502A30565D00325965 /* ActiveWorkout */,
 				0F59B9672A15DEAB00E8B904 /* Authentication */,
 				0F34B1E12A0DD99C001BBCF4 /* Workout */,
@@ -475,10 +495,12 @@
 				0F71CB632A04AF080034F91A /* AddWorkoutDelegate.swift in Sources */,
 				0F8821EE2A0CCCB400DD94C0 /* EditExerciseDelegate.swift in Sources */,
 				0F3CC3582A049D4600715138 /* ScheduleTableViewController.swift in Sources */,
+				0F8FCDB02A31DD9400FCA91C /* WorkoutRecording+CoreDataProperties.swift in Sources */,
 				0F9C60532A0B613E0083B700 /* Workout.swift in Sources */,
 				0F59B96B2A15E15500E8B904 /* FirebaseAuthenticationDelegate.swift in Sources */,
 				0F3CC35A2A049E7A00715138 /* WorkoutScheduleDelegate.swift in Sources */,
 				0FC127CD2A1F16B0006E12ED /* Exercise+CoreDataProperties.swift in Sources */,
+				0F8FCDB52A31E00700FCA91C /* RecordingTableViewController.swift in Sources */,
 				0F34B1E32A0DDA44001BBCF4 /* ViewWorkoutTableViewController.swift in Sources */,
 				0F9C60552A0B614B0083B700 /* Exercise.swift in Sources */,
 				0F9C60482A0B5AD10083B700 /* FirebaseController.swift in Sources */,
@@ -502,8 +524,10 @@
 				0FA731382A0CC9A9003EB4B3 /* EditExerciseTableViewController.swift in Sources */,
 				0F61C8D129FD33FF00447934 /* AppDelegate.swift in Sources */,
 				0F61C8D329FD33FF00447934 /* SceneDelegate.swift in Sources */,
+				0F8FCDB72A31E02C00FCA91C /* RecordingDataController.swift in Sources */,
 				0FA1925F2A0352BD006EEB79 /* HomeViewController.swift in Sources */,
 				0FA731362A0CC5A4003EB4B3 /* CreateExerciseViewController.swift in Sources */,
+				0F8FCDAF2A31DD9400FCA91C /* WorkoutRecording+CoreDataClass.swift in Sources */,
 				0FC127BF2A1EFD07006E12ED /* NotificationHandler.swift in Sources */,
 				0F19693B2A0391DD00D63E64 /* WorkoutTableViewCell.swift in Sources */,
 				0FAB268A2A305D50006CEFAE /* ActiveWorkoutDelegate.swift in Sources */,
