@@ -11,6 +11,7 @@ import CoreData
 
 
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate, RecordingDataController {
+    
     func addExerciseSet(rep: Int, intensity: Int, unit: String, exerciseID: String, workoutID: String, order: Int, duration: Int, setOrder: Int) -> AnyObject {
         return FirebaseExerciseSet()
     }
@@ -215,9 +216,11 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     func addNewAudioRecord(title: String, uuid: String) {
-        let rec = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: persistentContainer.viewContext) as! WorkoutRecording
+        let rec = NSEntityDescription.insertNewObject(forEntityName: "WorkoutRecording", into: persistentContainer.viewContext) as! WorkoutRecording
         rec.uuid = uuid
         rec.title = title
+        
+        cleanup()
     }
     
     func getAllRecordingInfo() -> [WorkoutRecording]{

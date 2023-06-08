@@ -9,5 +9,5 @@ import Foundation
 
 protocol RecordingDataController {
     func addNewAudioRecord(title: String, uuid: String)
-    func getAllRecordingInfo()
+    func getAllRecordingInfo() -> [WorkoutRecording]
 }

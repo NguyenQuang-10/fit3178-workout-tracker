@@ -14,6 +14,8 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     var audioRecorder: AVAudioRecorder?
     var recordingSession: AVAudioSession?
     var newAudioFileUUID = UUID().uuidString
+    var dataController: RecordingDataController?
+    var workoutName: String?
 
     @IBAction func recordButton(_ sender: Any) {
         recordingSession = AVAudioSession.sharedInstance()
@@ -51,6 +53,13 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func startRecording(uuid: String) {
+        let date = Date()
+        let calendar = Calendar.current
+        let day = String(calendar.component(.day, from: date))
+        let month = String(calendar.component(.month, from: date))
+        let year = String(calendar.component(.year, from: date))
+        let dateTag =  day + "-" + month + "-" + year
+        dataController?.addNewAudioRecord(title: workoutName! + "-" + dateTag, uuid: uuid)
         let audioFilename = getDocumentsDirectory().appendingPathComponent(uuid + ".m4a")
 
         let settings = [
@@ -85,6 +94,9 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var appDelegate = UIApplication.shared.delegate as! AppDelegate
+        dataController = appDelegate.coreDataController
 
         // Do any additional setup after loading the view.
     }

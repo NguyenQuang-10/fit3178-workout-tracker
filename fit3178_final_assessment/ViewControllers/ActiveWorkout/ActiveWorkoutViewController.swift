@@ -83,6 +83,13 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
         manager?.finishWorkout()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "finishedWorkoutSegue" {
+            let destination = segue.destination as! FinishedWorkoutViewController
+            destination.workoutName = workoutName
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

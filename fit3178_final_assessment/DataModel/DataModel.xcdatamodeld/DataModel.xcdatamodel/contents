@@ -23,7 +23,7 @@
         <attribute name="schedule" optional="YES" attributeType="Transformable"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExerciseSet" inverseName="workout" inverseEntity="ExerciseSet"/>
     </entity>
-    <entity name="WorkoutRecording" representedClassName="WorkoutRecording" syncable="YES" codeGenerationType="class">
+    <entity name="WorkoutRecording" representedClassName=".WorkoutRecording" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
     </entity>
