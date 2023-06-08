@@ -287,7 +287,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username's Workouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-hA-MOq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-hA-MOq">
                                 <rect key="frame" x="112" y="59" width="168" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -504,7 +504,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0c-a9-ph4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3689" y="-332"/>
+            <point key="canvasLocation" x="3688" y="-27"/>
         </scene>
         <!--Exercises-->
         <scene sceneID="rK2-qd-xIG">
@@ -576,7 +576,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pa-ct-d25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4617.5572519083971" y="508.45070422535213"/>
+            <point key="canvasLocation" x="3688" y="782"/>
         </scene>
         <!--Add exercise-->
         <scene sceneID="E8g-T0-Afw">
@@ -627,7 +627,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nf3-8H-GF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5602.2900763358775" y="507.74647887323948"/>
+            <point key="canvasLocation" x="4804" y="782"/>
         </scene>
         <!--Edit exercise-->
         <scene sceneID="cap-8d-lKJ">
@@ -743,7 +743,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPh-FA-MPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4617.5572519083971" y="1404.9295774647887"/>
+            <point key="canvasLocation" x="3688" y="1593"/>
         </scene>
         <!--Create Exercise View Controller-->
         <scene sceneID="pK5-IE-Rpj">
@@ -780,10 +780,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSZ-ma-rV5">
-                                <rect key="frame" x="16" y="263" width="151" height="35"/>
+                                <rect key="frame" x="16" y="271" width="122" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add da thingggg"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add exercise"/>
                                 <connections>
                                     <action selector="saveExercise:" destination="MW9-1c-HTQ" eventType="touchUpInside" id="sPA-qa-0Jm"/>
                                 </connections>
@@ -800,7 +800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSZ-z2-PYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6576.3358778625952" y="507.74647887323948"/>
+            <point key="canvasLocation" x="5857" y="782"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o0o-Vh-0bk">
