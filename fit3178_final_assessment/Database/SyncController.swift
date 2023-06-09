@@ -19,6 +19,9 @@ class SyncController: NSObject, DatabaseProtocol {
         
     }
     
+    /*
+     Clear all data in coredate then sync with firebase
+     */
     func syncWithOnline() {
         coreDataController?.clearAllData()
         
@@ -45,6 +48,9 @@ class SyncController: NSObject, DatabaseProtocol {
         
     }
     
+    /*
+     Helper function to sync data from firebase
+     */
     func setUpWorkout(userExerciseSetRef: CollectionReference, userWorkoutColRef: CollectionReference) {
         userWorkoutColRef.getDocuments { (querySnapshot, error) in
             for document in querySnapshot!.documents {
@@ -112,6 +118,9 @@ class SyncController: NSObject, DatabaseProtocol {
     var coreDataController: CoreDataController?
     var firebaseController: FirebaseController?
     
+    /*
+     All follow methods are same as lab note, but they do for both firebase and coredata
+     */
     func cleanup() {
         coreDataController!.cleanup()
     }

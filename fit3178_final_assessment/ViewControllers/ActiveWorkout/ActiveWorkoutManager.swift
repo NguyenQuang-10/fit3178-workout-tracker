@@ -8,7 +8,9 @@
 import Foundation
 import UserNotifications
 
-// manages app behaviour when a workout is active
+/**
+    Manages the state of an active (started) workout
+ */
 class ActiveWorkoutManager {
     
     var delegate: ActiveWorkoutDelegate? // the view controller that displaying the content of the active workout
@@ -18,8 +20,9 @@ class ActiveWorkoutManager {
     var active = false // true if there is currently an active workout
     var pendingNotiID: [String] = [] // stores all pending uuid of scheduled notification
     
-    var listeners: [ActiveWorkoutListener] = []
+    var listeners: [ActiveWorkoutListener] = [] // stores the objects to notify when a workout is started
     
+    // add listener
     func addListener(listener: ActiveWorkoutListener) {
         listeners.append(listener)
     }
@@ -78,6 +81,7 @@ class ActiveWorkoutManager {
         }
     }
     
+    // states of the workout
     var minuteLeft: Int?
     var secondLeft: Int?
     var currentExercise: Exercise?
@@ -91,15 +95,15 @@ class ActiveWorkoutManager {
         delegate!.updateExercise(exercise: currentExercise!)
         delegate!.updateSet(setData: currentSets![setIndex!], num: setIndex! + 1, total: currentSets!.count)
         
-        if secondLeft! > 0 {
+        if secondLeft! > 0 { // update second
             secondLeft! -= 1
             delegate?.updateSecond(sec: secondLeft!)
-        } else if minuteLeft! > 0 {
+        } else if minuteLeft! > 0 { // update minute if 60 second passed
             minuteLeft! -= 1
             secondLeft! = 59
             delegate?.updateMinute(min: minuteLeft!)
             delegate?.updateSecond(sec: secondLeft!)
-        } else if setIndex! < currentSets!.count - 1 {
+        } else if setIndex! < currentSets!.count - 1 { // if the duration alloted for the set is finished change into the next set of the exercise
             setIndex! += 1
             // reset time for new set
             minuteLeft = Int(currentSets![setIndex!].duration)
@@ -111,7 +115,7 @@ class ActiveWorkoutManager {
             let currSet = currentSets![setIndex!]
             delegate?.updateSet(setData: currSet, num: setIndex! + 1, total: currentSets!.count)
             
-        } else if exerciseIndex! < exerciseArray.count - 1{
+        } else if exerciseIndex! < exerciseArray.count - 1{ // if all set has been done, move to first set of the next workout
             exerciseIndex! += 1
             setIndex = 0
             currentExercise = exerciseArray[exerciseIndex!]
@@ -150,7 +154,7 @@ class ActiveWorkoutManager {
     // schedule the notification when set and exercises change
     func scheduleNotification() {
         var delay = 1
-        for e in exerciseArray {
+        for e in exerciseArray { // schedule notification for workout changes
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(delay), repeats: false)
             
             var notiContent = UNMutableNotificationContent()
@@ -162,7 +166,7 @@ class ActiveWorkoutManager {
             UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
             pendingNotiID.append(newExNotiUUID)
             
-            for s in exerciseSets![e]! {
+            for s in exerciseSets![e]! { // schedule notification for set changes
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(delay), repeats: false)
                 
                 var notiContent = UNMutableNotificationContent()
@@ -179,6 +183,7 @@ class ActiveWorkoutManager {
         }
     }
     
+    // update the state of the active workout instantaneously to simulate the number of second passed
     func timeskip(secondPassed: Int) {
         timer?.invalidate()
         for _ in 0...secondPassed {

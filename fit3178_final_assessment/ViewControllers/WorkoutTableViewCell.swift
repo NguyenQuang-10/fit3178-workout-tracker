@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ Display the information about a workout
+ */
 class WorkoutTableViewCell: UITableViewCell {
 
 

@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+    Responsible for getting authentication from user, validating the data, then passing the data to the Firebase controller to login
+ */
 class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var emailTextbox: UITextField!

@@ -7,13 +7,17 @@
 
 import UIKit
 
+/**
+    Display the information about a workout
+ */
 class ViewWorkoutTableViewController: UITableViewController {
 
-    var displayingWorkout: Workout?
-    var exerciseDict: Dictionary<Exercise, [ExerciseSet]> = [:]
-    var membershipSet: Set<Exercise> = Set()
-    var exerciseList: [Exercise] = []
+    var displayingWorkout: Workout? // workout to be display
+    var exerciseDict: Dictionary<Exercise, [ExerciseSet]> = [:] // contains the exercises and their set data of the workout
+    var membershipSet: Set<Exercise> = Set() // used to initialise exerciseDict and exerciseList
+    var exerciseList: [Exercise] = [] // the exercise in the workout
     
+    // translate int into week dates
     let dateForInt: Dictionary<Int, String> = [
         2: "Monday",
         3: "Tuesday",
@@ -27,6 +31,7 @@ class ViewWorkoutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // initialises exerciseDict and exerciseList
         let exerciseSetsUnordered = displayingWorkout?.exercises?.allObjects
         for es in exerciseSetsUnordered! {
             let exerciseSet = es as! ExerciseSet
@@ -50,9 +55,18 @@ class ViewWorkoutTableViewController: UITableViewController {
             // self.navigationItem.rightBarButtonItem = self.editButtonItem
         }
         
+        /**
+                        Sorts the exerciseList in the correct order (note that the order of the workout is stored in all ExerciseSetStruct of the exercise under .order (#not setOrder as that is for the or
+                        ordering of the set inside an exercise))
+         */
+        
         exerciseList = exerciseList.sorted { (e1, e2) -> Bool in
             return exerciseDict[e1]![0].order < exerciseDict[e2]![0].order
         }
+        
+        /**
+                        Sort the ordering of the set inside each exercise (see above)
+         */
         
         for e in exerciseList {
             exerciseDict[e] = exerciseDict[e]?.sorted{ (s1,s2) -> Bool in 
@@ -86,7 +100,7 @@ class ViewWorkoutTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 { // Display the details of the workout we are displaying
             let cell = tableView.dequeueReusableCell(withIdentifier: "workoutDetailCell", for: indexPath)
 
             var content = cell.defaultContentConfiguration()
@@ -107,7 +121,7 @@ class ViewWorkoutTableViewController: UITableViewController {
             cell.contentConfiguration = content
 
             return cell
-        } else {
+        } else { // display the details of each exercise and their set for the workout we are displaying
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)
 
             var content = cell.defaultContentConfiguration()
@@ -168,6 +182,9 @@ class ViewWorkoutTableViewController: UITableViewController {
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /**
+         Set the activeWorkoutManager for the view controller and load the data about the workout that about to be started to the activeWorkoutManager
+         */
         if segue.identifier == "startWorkoutSegue" {
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
             let activeWorkoutManager = appDelegate?.activeWorkoutManager

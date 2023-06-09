@@ -6,24 +6,30 @@
 //
 
 import UIKit
-
+/**
+ Contains information about an exercise
+ */
 struct ExerciseData {
     var name: String
     var desc: String
     var imageURL: String
-    var exerciseInDB: Exercise?
+    var exerciseInDB: Exercise? // the NSManagedObject Exercise that is described by this struct
 }
 
+/**
+ Alllow user to search and add an exercise to the workout, from exercise that has been added to their workout to workouts retrieved by an API
+ */
 class AddExerciseTableViewController: UITableViewController, DatabaseListener, UISearchBarDelegate {
-    var listenerType: ListenerType = .exercise
-    weak var databaseController: DatabaseProtocol?
-    var delegate: AddExerciseDelegate?
+    var listenerType: ListenerType = .exercise // listener type for database
+    weak var databaseController: DatabaseProtocol? // database Controller
+    var delegate: AddExerciseDelegate? // delegate responsible to add exercise to a workout
         
- 
+    // doesn't use workout information
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         
     }
     
+    // update the user added exercise
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
         userAddedExercise.removeAll()
         let _ = exercises.map {
@@ -38,10 +44,10 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     }
     
     
-    var exercisesInView: [ExerciseData] = []
-    var userAddedExercise: [ExerciseData] = []
-    var apiExercise: [ExerciseData] = []
-    var firstLoad = true
+    var exercisesInView: [ExerciseData] = [] // exercise that are in view of the table view
+    var userAddedExercise: [ExerciseData] = [] // all exercise that has been added to the user account
+    var apiExercise: [ExerciseData] = [] // all exercise retrieved from the api
+    var firstLoad = true // true if this is the first time the view controller is loaded
     var indicator = UIActivityIndicatorView()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +62,7 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         databaseController?.removeListener(listener: self)
     }
     
-    
+    // manage searching of exercise
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         let searchText = searchBar.text;
         guard searchText != nil || searchText != "" else {
@@ -87,6 +93,7 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         }
     }
     
+    // scope for searching
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if selectedScope == 0 {
             exercisesInView = userAddedExercise
@@ -97,6 +104,8 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
         }
     }
     
+    
+    // retrieve exercise from API
     func requestExerciseNamed(name: String) async {
         var searchURLComponents = URLComponents()
         searchURLComponents.scheme = "https"
@@ -206,7 +215,7 @@ class AddExerciseTableViewController: UITableViewController, DatabaseListener, U
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        // add the exercise that the user selected to the workout
         let exerciseData = exercisesInView[indexPath.row]
         if let dbExercise = exerciseData.exerciseInDB, dbExercise != nil {
             delegate?.addExerciseToWorkout(exercise: dbExercise)

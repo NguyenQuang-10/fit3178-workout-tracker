@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// delegate responsible for the configuring of an exercise
 protocol ConfigureExerciseDelegate {
     var exercises: Dictionary<Exercise, [ExerciseSetStruct]> {get set}
 }

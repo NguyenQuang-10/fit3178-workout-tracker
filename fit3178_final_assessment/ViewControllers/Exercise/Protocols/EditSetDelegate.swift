@@ -7,6 +7,7 @@
 
 import Foundation
 
+// delegate responsible for editing a set
 protocol editSetDelegate {
     func updateSetAtRow(indexPath: IndexPath, updatedSet: ExerciseSetStruct)
 }

@@ -11,14 +11,19 @@ import AVFoundation
 class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     
     
-    @IBOutlet weak var recordButtonOutler: UIButton!
+    @IBOutlet weak var recordButtonOutler: UIButton! // outlet for the record button
+    
+    // AV classes needed for audio recording
     var audioRecorder: AVAudioRecorder?
     var recordingSession: AVAudioSession?
+    
+    // the file name to be saved as, also the identifier for the audio note to be saved in coredata
     var newAudioFileUUID = UUID().uuidString
-    var dataController: RecordingDataController?
-    var workoutName: String?
+    var dataController: RecordingDataController? // the data controller responsible for managing information on audio notes
+    var workoutName: String? // name of the finished workout
 
     // NOTE: the AVFoundation parts in this class are modified from the Hacking with Swift article from Abouts
+    // Ask for permission to record, initializes the recording session and start recording
     @IBAction func recordButton(_ sender: Any) {
         recordingSession = AVAudioSession.sharedInstance() // get the recording Session
 
@@ -56,6 +61,7 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
         return paths[0]
     }
     
+    // start the recording then
     // save info about the recording to coredata and save the recording it self to a new file in the document directory
     func startRecording(uuid: String) {
         let date = Date()
@@ -108,6 +114,7 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
         // Do any additional setup after loading the view.
     }
     
+    // return to home if button is presssed
     @IBAction func backToHome(_ sender: Any) {
         navigationController?.dismiss(animated: true)
     }

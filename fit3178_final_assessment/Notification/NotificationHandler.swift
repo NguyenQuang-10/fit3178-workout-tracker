@@ -12,20 +12,29 @@ import UserNotifications
 // Responsible for handling the scheduling of the notification for workout reminder
 // Depending on the schedule of a workout, schedule a notification at 8AM for each date of the week that workout is scheduled for
 class NotificationHandler: NSObject, DatabaseListener {
-    var listenerType: ListenerType = .workout
-    var workouts: [Workout] = []
-    var databaseController: DatabaseProtocol?
+    var listenerType: ListenerType = .workout // listener type for database controller
+    var workouts: [Workout] = [] // all workouts to schedule notification for
+    var databaseController: DatabaseProtocol? // database controller to retrieve exercise
     
+    /*
+     Initialiser
+     */
     override init() {
         super.init()
         databaseController?.addListener(listener: self)
     }
     
+    /*
+     Update workouts when database changes
+     */
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         workouts = workoutExercise
         scheduleNotification()
     }
     
+    /*
+     Doesn't need data from exercises
+     */
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
         return
     }
@@ -59,7 +68,7 @@ class NotificationHandler: NSObject, DatabaseListener {
         
 //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
-        // schedule the notification
+        // configure notification content schedule the notification for 8AM on the date of the workout
         let dateFreq: [Int] = getSchedule()
         for i in 0...6 {
             if dateFreq[i] > 0 {

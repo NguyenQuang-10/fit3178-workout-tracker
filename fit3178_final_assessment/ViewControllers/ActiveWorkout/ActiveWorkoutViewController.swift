@@ -7,20 +7,20 @@
 
 import UIKit
 
+/**
+    Display the current active workout with data from an ActiveWorkoutManager
+ */
 class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
+    
+    // move to the finished workout screen if active workout is finished
     func finishWorkout() {
         performSegue(withIdentifier: "finishedWorkoutSegue", sender: self)
     }
     
+    var manager: ActiveWorkoutManager? // the manager for the state of the active workout
+    var workoutName: String? // the name of the active workout
     
-    
-    
-    
-    var manager: ActiveWorkoutManager?
-    var workoutName: String?
-    
-    
-    
+    // labels for the active workout state
     @IBOutlet weak var reps: UILabel!
     @IBOutlet weak var minute: UILabel!
     @IBOutlet weak var second: UILabel!
@@ -31,7 +31,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     @IBOutlet weak var label: UILabel!
     
     
-    
+    // update the label after every second
     func updateSecond(sec: Int) {
         if sec >= 10 {
             second.text = String(describing: sec)
@@ -43,6 +43,8 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
         
     }
     
+    
+    // update the label after every minute
     func updateMinute(min: Int) {
         if min >= 10 {
             minute.text = String(describing: min)
@@ -53,6 +55,8 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
         }
     }
     
+    
+    // update the label when set is changed
     func updateSet(setData: ExerciseSet, num: Int, total: Int) {
         currentSet.text = String(describing: num)
         numOfSets.text = String(describing: total)
@@ -61,11 +65,14 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
         label.text = setData.unit! as String
     }
     
+    // update the label when exercise changes
     func updateExercise(exercise: Exercise) {
         exerciseNme.text = exercise.name
         exerciseDesc.text = exercise.desc
     }
     
+    
+    // some label for exercise and workout details
     @IBOutlet weak var exerciseNme: UILabel!
     
     @IBOutlet weak var exerciseDesc: UILabel!
@@ -75,7 +82,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutNameLable.text = workoutName
-        if manager?.active == false {
+        if manager?.active == false { // if the active workout manager isn't active, starts it
             manager?.startWorkout()
         }
         
@@ -83,6 +90,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     }
     
 
+    // end the workout when this button is pressed
     @IBAction func endWorkoutButton(_ sender: Any) {
         manager?.finishWorkout()
     }

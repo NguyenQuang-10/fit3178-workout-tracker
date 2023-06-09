@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Struct responsible for storing information about a set of an exercise
+ */
 struct ExerciseSetStruct {
     var repetition: Int
     var intensity: Int

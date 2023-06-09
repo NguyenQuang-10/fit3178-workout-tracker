@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var lastTimeExit: Date?
+    var lastTimeExit: Date? // last time since the app enter the background
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        if let last = lastTimeExit {
+        if let last = lastTimeExit { // update the status of the active workout manager once the app enters the foreground again
 //            print("Scence entered")
             let timePassed = Date.now.timeIntervalSince(lastTimeExit!)
 //            print(timePassed)

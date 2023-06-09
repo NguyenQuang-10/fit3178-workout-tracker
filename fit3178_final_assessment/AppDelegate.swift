@@ -13,10 +13,10 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var databaseController: SyncController?
-    var coreDataController: CoreDataController?
-    var firebaseController: FirebaseController? // remove after testing
-    var firebaseAuthController: FirebaseAuthenticationDelegate?
+    var databaseController: SyncController? // manages data between coreData and firebase
+    var coreDataController: CoreDataController? // manages data for coreData
+    var firebaseController: FirebaseController? // manages data for firebase firestore
+    var firebaseAuthController: FirebaseAuthenticationDelegate? // manages data for firebaseAuth
     
     let notificationHandler: NotificationHandler = NotificationHandler()
     var activeWorkoutManager: ActiveWorkoutManager?

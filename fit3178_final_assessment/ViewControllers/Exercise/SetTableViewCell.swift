@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+/**
+ Table View Cell for configuring set information
+ */
 class SetTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var intensityTextbox: UITextField!

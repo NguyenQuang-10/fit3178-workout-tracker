@@ -7,6 +7,7 @@
 
 import Foundation
 
+// delegate responsible for adding exercise to a workout
 protocol AddExerciseDelegate {
     func addExerciseToWorkout(exercise: Exercise)
 }

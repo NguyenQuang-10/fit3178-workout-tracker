@@ -7,7 +7,9 @@
 
 import UIKit
 import UserNotifications
-
+/**
+ The home view controller, displays all the workout that the user has
+ */
 class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate, ActiveWorkoutListener {
     
     

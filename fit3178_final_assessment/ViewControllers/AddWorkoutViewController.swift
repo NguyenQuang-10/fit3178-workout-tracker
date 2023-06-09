@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+/**
+ View controller responsible for creating a workout
+ */
 class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate, ConfigureExerciseDelegate{
     
     

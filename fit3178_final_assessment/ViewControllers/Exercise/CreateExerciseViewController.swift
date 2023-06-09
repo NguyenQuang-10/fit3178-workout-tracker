@@ -6,10 +6,13 @@
 //
 
 import UIKit
-
+/**
+ View controller allowing user to create an exercise
+ */
 class CreateExerciseViewController: UIViewController {
-    weak var databaseController: DatabaseProtocol?
+    weak var databaseController: DatabaseProtocol? // the database controller
 
+    // text field for user to input information about the new exercise
     @IBOutlet weak var exerciseName: UITextField!
     @IBOutlet weak var exerciseDesc: UITextField!
     
@@ -21,7 +24,7 @@ class CreateExerciseViewController: UIViewController {
         databaseController = appDelegate?.databaseController
     }
     
-
+    // save the newly created exercise
     @IBAction func saveExercise(_ sender: Any) {
         if let newName = exerciseName.text, newName != "", let newDesc = exerciseDesc.text, newDesc != "" {
             let _ = databaseController?.addExercise(name: newName, desc: newDesc, imageURL: "", id: UUID().uuidString)

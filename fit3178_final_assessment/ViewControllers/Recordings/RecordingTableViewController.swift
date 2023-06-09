@@ -9,7 +9,9 @@ import UIKit
 import AVFoundation
 
 
-
+/**
+ Display all audio notes in a table form
+ */
 class RecordingTableViewController: UITableViewController {
     
     var dataController: RecordingDataController? // the database controller to fetch recording info from

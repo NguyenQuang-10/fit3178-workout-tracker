@@ -7,6 +7,7 @@
 
 import Foundation
 
+// delegate responsible for editing an exercise
 protocol EditExerciseDelegate {
     func getSetsForExercise(exercise: Exercise) -> [ExerciseSetStruct]
     func updateSetsForExercise(exercise: Exercise, exericseSets: [ExerciseSetStruct])

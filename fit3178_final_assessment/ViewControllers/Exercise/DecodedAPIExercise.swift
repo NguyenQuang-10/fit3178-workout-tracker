@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Codable for decoding exercise details we retrieve from the API
+ */
 class ExerciseAPIData: NSObject, Decodable {
     var name: String
     var type: String

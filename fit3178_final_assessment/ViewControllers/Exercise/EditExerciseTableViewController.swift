@@ -7,30 +7,43 @@
 
 import UIKit
 
+/**
+ View that allow the user the change and configure sets of an exercise
+ */
 class EditExerciseTableViewController: UITableViewController, editSetDelegate {
+    /**
+        Update the data of a set at a indexPath in the table view
+     */
     func updateSetAtRow(indexPath: IndexPath, updatedSet: ExerciseSetStruct) {
         sets[indexPath.row] = updatedSet
         tableView.reloadData()
     }
     
+    /**
+     Save the changes made to the sets of the workout
+     */
     @IBAction func saveSets(_ sender: Any) {
         delegate?.updateSetsForExercise(exercise: editingExercise!, exericseSets: sets)
         navigationController?.popViewController(animated: true)
     }
     
+    /**
+        Add a new set to the exercise
+     */
     @IBAction func addNewSet(_ sender: Any) {
         var blankSet = ExerciseSetStruct(repetition: 0, intensity: 0, unit: "", order: 0, duration: 0, setOrder: sets.count)
         sets.append(blankSet)
         tableView.reloadData()
     }
     
-    var delegate: EditExerciseDelegate?
-    var sets: [ExerciseSetStruct] = []
-    var editingExercise: Exercise?
+    var delegate: EditExerciseDelegate? // the class responsible for configuring set data
+    var sets: [ExerciseSetStruct] = [] // the sets of the exercise we are currently configuring
+    var editingExercise: Exercise? // the exercise we are configuring
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // sort the sets in the correct order (stored in setOrder in ExerciseSetStruct, NOT .order, that stores the order of the exercise in the workout)
         sets = (delegate?.getSetsForExercise(exercise: editingExercise!))!
         sets = sets.sorted { (s1, s2) -> Bool in
             s1.setOrder < s2.setOrder
@@ -62,7 +75,7 @@ class EditExerciseTableViewController: UITableViewController, editSetDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
+        if indexPath.section == 1 { // configure content for the cell that responisble to configuring the set
             let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! SetTableViewCell
 
             cell.delegate = self
@@ -76,10 +89,10 @@ class EditExerciseTableViewController: UITableViewController, editSetDelegate {
             
 
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 2 { // contains a button that add sets to the exercise
             let cell = tableView.dequeueReusableCell(withIdentifier: "addSetCell", for: indexPath)
             return cell
-        } else {
+        } else { // contains information about how many set is in this exercise
             let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell", for: indexPath)
 
             var content = cell.defaultContentConfiguration()
