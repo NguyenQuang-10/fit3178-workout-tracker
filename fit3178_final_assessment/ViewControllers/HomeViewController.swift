@@ -134,6 +134,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
             let target = destination.topViewController as! ActiveWorkoutViewController
             
             target.manager = activeWorkoutManager
+            target.workoutName = activeWorkoutManager?.workout?.name
             activeWorkoutManager?.updateDelegate(delegate: target)
         }
     }
