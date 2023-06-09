@@ -11,6 +11,7 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
     
     
     @IBAction func saveExercises(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func updateSetsForExercise(exercise: Exercise, exericseSets: [ExerciseSetStruct]) {
@@ -20,6 +21,8 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
             delegate?.exercises[exercise]?[i].order = exerciseOrder!
         }
     }
+    
+    
     
     func getSetsForExercise(exercise: Exercise) -> [ExerciseSetStruct] {
         return (delegate?.exercises[exercise])!
@@ -56,7 +59,7 @@ class ConfigureExerciseViewController: UIViewController, AddExerciseDelegate, UI
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCountCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = "\(exerciseKeys!.count)"
+            content.text = "\(exerciseKeys!.count) exercises in this workout"
             cell.contentConfiguration = content
             return cell
         }

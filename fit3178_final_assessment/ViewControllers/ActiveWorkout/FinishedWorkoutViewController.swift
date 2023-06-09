@@ -109,7 +109,7 @@ class FinishedWorkoutViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func backToHome(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
     /*

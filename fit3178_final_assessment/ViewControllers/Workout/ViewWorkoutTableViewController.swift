@@ -14,6 +14,16 @@ class ViewWorkoutTableViewController: UITableViewController {
     var membershipSet: Set<Exercise> = Set()
     var exerciseList: [Exercise] = []
     
+    let dateForInt: Dictionary<Int, String> = [
+        2: "Monday",
+        3: "Tuesday",
+        4: "Wednesday",
+        5: "Thursday",
+        6: "Friday",
+        7: "Saturday",
+        8: "Sunday"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,7 +89,22 @@ class ViewWorkoutTableViewController: UITableViewController {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "workoutDetailCell", for: indexPath)
 
-            // Configure the cell...
+            var content = cell.defaultContentConfiguration()
+            content.text = displayingWorkout?.name
+            if displayingWorkout!.schedule!.count > 0 {
+                content.secondaryText = "Every "
+                for i in 0...displayingWorkout!.schedule!.count - 1 {
+                    let dateInt = displayingWorkout!.schedule![i]
+                    if i < displayingWorkout!.schedule!.count - 1 {
+                        content.secondaryText! += dateForInt[dateInt]! + ", "
+                    } else {
+                        content.secondaryText! += dateForInt[dateInt]!
+                    }
+                    
+                }
+            }
+            
+            cell.contentConfiguration = content
 
             return cell
         } else {
@@ -88,7 +113,7 @@ class ViewWorkoutTableViewController: UITableViewController {
             var content = cell.defaultContentConfiguration()
             let exercise = exerciseList[indexPath.section - 1]
             let exerciseSet = exerciseDict[exercise]![indexPath.row]
-            content.text = "\(indexPath.row + 1). Reps: \(exerciseSet.repetition) Intensity: \(exerciseSet.intensity) \(exerciseSet.unit ?? "Ambatukam")"
+            content.text = "\(indexPath.row + 1). Reps: \(exerciseSet.repetition) Intensity: \(exerciseSet.intensity) \(exerciseSet.unit ?? "") for \(exerciseSet.duration) minutes"
             cell.contentConfiguration = content
 
             return cell
@@ -147,12 +172,13 @@ class ViewWorkoutTableViewController: UITableViewController {
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
             let activeWorkoutManager = appDelegate?.activeWorkoutManager
             
-            let destination = segue.destination as! ActiveWorkoutViewController
+            let destination = segue.destination as! UINavigationController
+            let target = destination.topViewController as! ActiveWorkoutViewController
             
-            destination.workoutName = displayingWorkout?.name
-            activeWorkoutManager?.delegate = destination
+            target.workoutName = displayingWorkout?.name
+            activeWorkoutManager?.delegate = target
             activeWorkoutManager?.loadWorkoutData(workout: displayingWorkout!, exerciseSets: exerciseDict)
-            destination.manager = activeWorkoutManager
+            target.manager = activeWorkoutManager
             
             
         }

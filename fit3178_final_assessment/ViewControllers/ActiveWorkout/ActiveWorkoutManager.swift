@@ -18,6 +18,20 @@ class ActiveWorkoutManager {
     var active = false // true if there is currently an active workout
     var pendingNotiID: [String] = [] // stores all pending uuid of scheduled notification
     
+    var listeners: [ActiveWorkoutListener] = []
+    
+    func addListener(listener: ActiveWorkoutListener) {
+        listeners.append(listener)
+    }
+    
+    // update the target view controller
+    func updateDelegate(delegate: ActiveWorkoutDelegate) {
+        timer?.invalidate()
+        self.delegate = delegate
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(workoutSubroutine), userInfo: nil, repeats: true)
+//        print(secondLeft)
+    }
     
     // load workout data to be display
     func loadWorkoutData(workout: Workout, exerciseSets: Dictionary<Exercise, [ExerciseSet]>){
@@ -59,6 +73,9 @@ class ActiveWorkoutManager {
         scheduleNotification()
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(workoutSubroutine), userInfo: nil, repeats: true)
+        for l in listeners {
+            l.workoutWasActivated()
+        }
     }
     
     var minuteLeft: Int?
@@ -71,6 +88,9 @@ class ActiveWorkoutManager {
     // subroutine that runs to update the workout status
     @objc
     func workoutSubroutine() {
+        delegate!.updateExercise(exercise: currentExercise!)
+        delegate!.updateSet(setData: currentSets![setIndex!], num: setIndex! + 1, total: currentSets!.count)
+        
         if secondLeft! > 0 {
             secondLeft! -= 1
             delegate?.updateSecond(sec: secondLeft!)
@@ -122,6 +142,9 @@ class ActiveWorkoutManager {
         pendingNotiID = []
         timer?.invalidate()
         delegate?.finishWorkout()
+        for l in listeners {
+            l.activeWorkoutWasFinished()
+        }
     }
     
     // schedule the notification when set and exercises change

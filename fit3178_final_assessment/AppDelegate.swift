@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 //        UNUserNotificationCenter.current().delegate = self
         
+        // set up sync controller
         databaseController = SyncController()
         coreDataController = CoreDataController()
         firebaseController = FirebaseController() // remove after testing

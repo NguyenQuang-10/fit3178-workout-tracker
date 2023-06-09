@@ -46,7 +46,6 @@ class NotificationHandler: NSObject, DatabaseListener {
     var notifcationUUIDforDate: Dictionary<Int, String> = [:]
     
     func scheduleNotification() {
-        print("date ran")
         // CHANGED FROM OLD, THIS IS THE CORRECT WEEKDAY TO INT
         let _: Dictionary = [
             2: "Monday",
@@ -75,7 +74,6 @@ class NotificationHandler: NSObject, DatabaseListener {
                 date.hour = 8
                 date.minute = 0
                 date.weekday = i + 2 // weekdays start from 2 for Monday
-                print(date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                 
                 if let uuid = notifcationUUIDforDate[i+2] {

@@ -20,6 +20,7 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     var workoutName: String?
     
     
+    
     @IBOutlet weak var reps: UILabel!
     @IBOutlet weak var minute: UILabel!
     @IBOutlet weak var second: UILabel!
@@ -74,7 +75,10 @@ class ActiveWorkoutViewController: UIViewController, ActiveWorkoutDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutNameLable.text = workoutName
-        manager?.startWorkout()
+        if manager?.active == false {
+            manager?.startWorkout()
+        }
+        
         // Do any additional setup after loading the view.
     }
     

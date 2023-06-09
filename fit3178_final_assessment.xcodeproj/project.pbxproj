@@ -61,6 +61,7 @@
 		0FC127CD2A1F16B0006E12ED /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC127C72A1F16B0006E12ED /* Exercise+CoreDataProperties.swift */; };
 		0FC127CF2A1F1C49006E12ED /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC127CE2A1F1C49006E12ED /* ExerciseSet.swift */; };
 		0FC127D12A1F207D006E12ED /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC127D02A1F207D006E12ED /* SyncController.swift */; };
+		0FCC36752A32CBCD000B296B /* ActiveWorkoutListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC36742A32CBCD000B296B /* ActiveWorkoutListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		0FC127C72A1F16B0006E12ED /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0FC127CE2A1F1C49006E12ED /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
 		0FC127D02A1F207D006E12ED /* SyncController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncController.swift; sourceTree = "<group>"; };
+		0FCC36742A32CBCD000B296B /* ActiveWorkoutListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				0F2D92532A30590400325965 /* ActiveWorkoutViewController.swift */,
 				0FAB26892A305D50006CEFAE /* ActiveWorkoutDelegate.swift */,
 				0F32A2D62A31AF05008275AC /* FinishedWorkoutViewController.swift */,
+				0FCC36742A32CBCD000B296B /* ActiveWorkoutListener.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				0FA1925D2A034782006EEB79 /* WeekDates.swift in Sources */,
 				0FA192582A033481006EEB79 /* DatabaseProtocol.swift in Sources */,
 				0FC127CF2A1F1C49006E12ED /* ExerciseSet.swift in Sources */,
+				0FCC36752A32CBCD000B296B /* ActiveWorkoutListener.swift in Sources */,
 				0F2D92522A3058E900325965 /* ActiveWorkoutManager.swift in Sources */,
 				0F7586F12A0C9C5C0027861E /* ConfigureExercisesDelegate.swift in Sources */,
 				0FA1924B2A032C15006EEB79 /* DataModel.xcdatamodeld in Sources */,

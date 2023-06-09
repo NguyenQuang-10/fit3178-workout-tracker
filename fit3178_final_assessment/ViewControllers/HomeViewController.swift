@@ -8,45 +8,36 @@
 import UIKit
 import UserNotifications
 
-class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate {
+class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegate, UITableViewDataSource, WorkoutScheduleDelegate, ActiveWorkoutListener {
+    
+    
     var schedule = [WeekDates]()
     
     var listenerType: ListenerType = .workout
     weak var databaseController: DatabaseProtocol?
     var allWorkouts: [Workout] = []
     var willShowWorkout: Workout?
+    var activeWorkoutManager: ActiveWorkoutManager?
     
-    let dateAtRow: Dictionary<Int, String> = [
-        2: "Monday",
-        3: "Tuesday",
-        4: "Wednesday",
-        5: "Thursday",
-        6: "Friday",
-        7: "Saturday",
-        8: "Sunday"
-    ]
     
     @IBOutlet weak var workoutTableView: UITableView!
     
     func onWorkoutChange(change: DatabaseChange, workoutExercise: [Workout]) {
         allWorkouts = workoutExercise
         workoutTableView.reloadData()
-        
-        
-        
-        // for testing onlys
-       
     }
     
     func onAllExercisesChange(change: DatabaseChange, exercises: [Exercise]) {
-        // do nothing
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         databaseController?.addListener(listener: self)
+        workoutTableView.reloadData()
         
     }
+    
+    
      
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -62,6 +53,10 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
         
         databaseController?.syncWithOnline()
         
+        activeWorkoutManager = appDelegate?.activeWorkoutManager
+        activeWorkoutManager?.finishWorkout()
+        activeWorkoutManager?.addListener(listener: self)
+        
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (granted, error) in
             if !granted {
@@ -69,21 +64,7 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
                 return
             }
         }
-//        let notificationContent = UNMutableNotificationContent()
-//        // Create its detailss
-//        notificationContent.title = "Workout changed!"
-//        notificationContent.subtitle = "asdfasfsdf"
-//        notificationContent.body = "[TEST] removed after testing"
-//
-//        let timeInterval = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//
-//        let request = UNNotificationRequest(identifier: "45425673452345s",
-//                content: notificationContent, trigger: timeInterval)
-//        UNUserNotificationCenter.current().add(request) { error in
-//            if let error = error {
-//              print(error)
-//            }
-//          }
+        workoutTableView.reloadData()
         
         super.viewDidLoad()
 
@@ -96,22 +77,40 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if activeWorkoutManager?.active == true {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allWorkouts.count
+        if (activeWorkoutManager!.active == true && section == 1) || (activeWorkoutManager!.active == false && section == 0) {
+            return allWorkouts.count
+        } else {
+            return 1
+        }
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutTableViewCell
+        let section = indexPath.section
+        if (activeWorkoutManager!.active == true && section == 1) || (activeWorkoutManager!.active == false && section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as! WorkoutTableViewCell
 
-        let workout = allWorkouts[indexPath.row]
-        cell.title?.text = workout.name
+            let workout = allWorkouts[indexPath.row]
+            cell.title?.text = workout.name
+            
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "activeWorkoutCell", for: indexPath) as! WorkoutTableViewCell
+            
+
+            return cell
+        }
         
-
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -128,9 +127,22 @@ class HomeViewController: UIViewController, DatabaseListener, UITableViewDelegat
             let destination = segue.destination as! UINavigationController
             let target = destination.topViewController as! ViewWorkoutTableViewController
             target.displayingWorkout = willShowWorkout
+        } else if segue.identifier == "activeWorkoutFromHomeSegue" {
+            let destination = segue.destination as! UINavigationController
+            let target = destination.topViewController as! ActiveWorkoutViewController
+            
+            target.manager = activeWorkoutManager
+            activeWorkoutManager?.updateDelegate(delegate: target)
         }
     }
-
+    
+    func workoutWasActivated() {
+        workoutTableView.reloadData()
+    }
+    
+    func activeWorkoutWasFinished() {
+        workoutTableView.reloadData()
+    }
     
 
     /*
